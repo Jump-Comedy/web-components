@@ -55,5 +55,8 @@
     "jest-cli": "^29.7.0",
     "yargs-parser": "^21.1.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^3.4.1"
+  }
 }

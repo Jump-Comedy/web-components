@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MailingListSignupForm {
+        "mailing_list_id": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +25,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLMailingListSignupFormElement extends Components.MailingListSignupForm, HTMLStencilElement {
+    }
+    var HTMLMailingListSignupFormElement: {
+        prototype: HTMLMailingListSignupFormElement;
+        new (): HTMLMailingListSignupFormElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +38,14 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "mailing-list-signup-form": HTMLMailingListSignupFormElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface MailingListSignupForm {
+        "mailing_list_id"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +61,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "mailing-list-signup-form": MailingListSignupForm;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +69,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "mailing-list-signup-form": LocalJSX.MailingListSignupForm & JSXBase.HTMLAttributes<HTMLMailingListSignupFormElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
