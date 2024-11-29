@@ -1,5 +1,5 @@
 import { Component, h, Prop, Element, State } from "@stencil/core";
-
+type SubmitOptions = { ignore_incorrect_email_warning: boolean; email: string };
 @Component({
   tag: "mailing-list-signup-form",
   styleUrl: "./mailing-list-signup-form.css",
@@ -10,17 +10,27 @@ export class MailingListSignupForm {
   @Prop() mailing_list_id: string;
   @Element() el: HTMLElement;
 
-  // form data
-  @State() ignore_incorrect_email_warning = false;
+  // messages
   @State() message;
+
+  // form data
   @State() email: string;
-  @State() corrected_email: string;
 
   // modal control
   @State() show_corrected_email_modal = false;
 
+  corrected_email: string;
+
   async handleSubmit(event) {
     event.preventDefault();
+    this.submitForm({
+      ignore_incorrect_email_warning: false,
+      email: this.email,
+    });
+  }
+
+  async submitForm(opts: SubmitOptions) {
+    this.show_corrected_email_modal = false;
     try {
       const response = await fetch(
         "http://localhost:4000/store/mailing-list-signup",
@@ -28,9 +38,9 @@ export class MailingListSignupForm {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: this.email,
+            email: opts.email,
             mailing_list_id: this.mailing_list_id,
-            ignore_incorrect_email_warning: this.ignore_incorrect_email_warning,
+            ignore_incorrect_email_warning: opts.ignore_incorrect_email_warning,
           }),
         },
       );
@@ -91,47 +101,53 @@ export class MailingListSignupForm {
             </div>
           </div>
 
-          <div id="messages" class="text-white text-lg p-2">
-            {this.message}
-          </div>
-          <div
-            id="warning-modal"
-            class={`modal ${this.show_corrected_email_modal ? "modal-open" : ""} text-black bg-white text-lg p-2`}
-          >
-            <div class="modal-box">
-              <div class={"flex flex-col gap-y-4 justify-center"}>
-                <div id="text-bold">
-                  We noticed you may have made a typo? Did you mean to enter{" "}
-                  <strong>{this.email}</strong> or did you mean{" "}
-                  <strong>{this.corrected_email}</strong>?
-                </div>
-                <div class={"flex gap-x-3"}>
-                  <button
-                    style={{ background: "red", color: "white" }}
-                    class={"btn btn-sm"}
-                    onClick={() => {
-                      this.show_corrected_email_modal = false;
-                    }}
-                  >
-                    Use {this.corrected_email}
-                  </button>
-                  <button
-                    type={"button"}
-                    class={"btn btn-sm btn-primary"}
-                    onClick={(e) => {
-                      this.email = this.corrected_email;
-                      this.ignore_incorrect_email_warning = true;
-                      this.show_corrected_email_modal = false;
-                      this.handleSubmit(e);
-                      return false;
-                    }}
-                  >
-                    Use {this.email}
-                  </button>
+          {this.message && (
+            <div id="messages" class="text-white text-lg p-2">
+              {this.message}
+            </div>
+          )}
+          {this.show_corrected_email_modal && (
+            <div
+              id="warning-modal"
+              class={`modal modal-open text-black bg-white text-lg p-2`}
+            >
+              <div class="modal-box">
+                <div class={"flex flex-col gap-y-4 justify-center"}>
+                  <div id="text-bold">
+                    We noticed you may have made a typo? Did you mean to enter{" "}
+                    <strong>{this.email}</strong> or did you mean{" "}
+                    <strong>{this.corrected_email}</strong>?
+                  </div>
+                  <div class={"flex gap-x-3"}>
+                    <button
+                      style={{ background: "red", color: "white" }}
+                      class={"btn btn-sm"}
+                      onClick={() => {
+                        this.submitForm({
+                          ignore_incorrect_email_warning: true,
+                          email: this.corrected_email,
+                        });
+                      }}
+                    >
+                      Use {this.corrected_email}
+                    </button>
+                    <button
+                      type={"button"}
+                      class={"btn btn-sm btn-primary"}
+                      onClick={() => {
+                        this.submitForm({
+                          ignore_incorrect_email_warning: true,
+                          email: this.email,
+                        });
+                      }}
+                    >
+                      Use {this.email}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </form>
     );
