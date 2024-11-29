@@ -87,7 +87,6 @@ export class MailingListSignupForm {
         id={"mailing-list-form"}
         onSubmit={(e) => this.handleSubmit(e)}
         method={"post"}
-        action={"http://localhost:4000/store/mailing-list-signup"}
       >
         <div class="flex flex-col w-full items-center p-2">
           <div class="flex w-full flex-col md:flex-row gap-2 justify-center items-center">
