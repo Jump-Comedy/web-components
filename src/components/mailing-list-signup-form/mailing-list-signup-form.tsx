@@ -68,7 +68,6 @@ export class MailingListSignupForm {
         },
       );
       const result = await response.json();
-      console.log("result ", result);
       if (result.status === "ok") {
         this.email = "";
         this.message = this.successMessage;
@@ -78,8 +77,6 @@ export class MailingListSignupForm {
           this.show_corrected_email_modal = true;
         } else if (result.error_type === "email_exists_in_mailing_list") {
           this.message = this.emailExistsInMailingListMessage;
-          console.log("this was this ", this.emailExistsInMailingListMessage);
-          console.log("message now is ", this.message);
         } else if (result.error_type === "mailing_list_not_found") {
           this.message = this.mailingListNotFoundMessage;
         } else {
