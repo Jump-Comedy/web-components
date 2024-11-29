@@ -13,13 +13,17 @@ export namespace Components {
         "buttonHoverBorderColor": string;
         "buttonHoverTextColor": string;
         "buttonTextColor": string;
+        "emailExistsInMailingListMessage": string;
         "inputBgColor": string;
         "inputBorderColor": string;
         "inputFocusBorderColor": string;
         "inputFocusRingColor": string;
         "inputPlaceholderColor": string;
         "inputTextColor": string;
+        "mailingListNotFoundMessage": string;
         "mailing_list_id": string;
+        "signUpButtonLabel": string;
+        "successMessage": string;
     }
     interface MyComponent {
         /**
@@ -62,13 +66,17 @@ declare namespace LocalJSX {
         "buttonHoverBorderColor"?: string;
         "buttonHoverTextColor"?: string;
         "buttonTextColor"?: string;
+        "emailExistsInMailingListMessage"?: string;
         "inputBgColor"?: string;
         "inputBorderColor"?: string;
         "inputFocusBorderColor"?: string;
         "inputFocusRingColor"?: string;
         "inputPlaceholderColor"?: string;
         "inputTextColor"?: string;
+        "mailingListNotFoundMessage"?: string;
         "mailing_list_id"?: string;
+        "signUpButtonLabel"?: string;
+        "successMessage"?: string;
     }
     interface MyComponent {
         /**

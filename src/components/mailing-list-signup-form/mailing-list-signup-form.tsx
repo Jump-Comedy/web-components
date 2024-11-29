@@ -7,6 +7,14 @@ type SubmitOptions = { ignore_incorrect_email_warning: boolean; email: string };
   formAssociated: true,
 })
 export class MailingListSignupForm {
+  // Labels
+  @Prop() signUpButtonLabel = "Sign Up";
+  @Prop() emailExistsInMailingListMessage =
+    "This email already exists in the mailing list.";
+
+  @Prop() successMessage = "Thank you for subscribing!";
+  @Prop() mailingListNotFoundMessage = "Mailing List not found";
+
   // Styles
   @Prop() buttonBorderColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonBgColor: string = "#67e8f9"; // cyan-300
@@ -60,16 +68,22 @@ export class MailingListSignupForm {
         },
       );
       const result = await response.json();
-
+      console.log("result ", result);
       if (result.status === "ok") {
         this.email = "";
-        this.message = result.message;
+        this.message = this.successMessage;
       } else if (result.status === "error") {
-        this.message = result.message;
-      } else if (result.status === "warning") {
-        if (result.type === "email_correction_available") {
+        if (result.error_type === "email_correction_available") {
           this.corrected_email = result.data.corrected_email;
           this.show_corrected_email_modal = true;
+        } else if (result.error_type === "email_exists_in_mailing_list") {
+          this.message = this.emailExistsInMailingListMessage;
+          console.log("this was this ", this.emailExistsInMailingListMessage);
+          console.log("message now is ", this.message);
+        } else if (result.error_type === "mailing_list_not_found") {
+          this.message = this.mailingListNotFoundMessage;
+        } else {
+          this.message = result.message;
         }
       }
     } catch (error) {
@@ -142,7 +156,7 @@ export class MailingListSignupForm {
                   target.style.borderColor = this.buttonBorderColor;
                 }}
               >
-                Inn-Vite Me
+                {this.signUpButtonLabel}
               </button>
             </div>
           </div>
@@ -179,7 +193,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Use {this.corrected_email}
+                      Change to {this.corrected_email}
                     </button>
                     <button
                       style={{
@@ -196,7 +210,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Use {this.email}
+                      Keep {this.email}
                     </button>
                   </div>
                 </div>
