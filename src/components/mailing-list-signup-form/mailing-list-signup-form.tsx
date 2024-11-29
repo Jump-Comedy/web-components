@@ -56,7 +56,7 @@ export class MailingListSignupForm {
     this.show_corrected_email_modal = false;
     try {
       const response = await fetch(
-        "https://amplify.jumpcomedy.com/store/mailing-list-signup",
+        "http://localhost:4000/store/mailing-list-signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
