@@ -2,6 +2,7 @@ import { Component, h, Prop, Element, State } from "@stencil/core";
 
 @Component({
   tag: "mailing-list-signup-form",
+  styleUrl: "./mailing-list-signup-form.css",
   shadow: true,
   formAssociated: true,
 })
@@ -55,18 +56,6 @@ export class MailingListSignupForm {
 
   handleEmailChange(event) {
     this.email = event.target.value;
-  }
-
-  componentWillLoad() {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://embed.jumpcomedy.com/styles/comedy-inn.css"; // URL of the remote CSS
-    this.el.shadowRoot.appendChild(link);
-    return new Promise<void>((resolve, reject) => {
-      link.onload = () => resolve(); // Resolve the promise on successful load
-      link.onerror = () => reject(new Error("Failed to load stylesheet")); // Reject if loading fails
-      this.el.shadowRoot.appendChild(link);
-    });
   }
 
   render() {
