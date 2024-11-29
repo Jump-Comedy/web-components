@@ -56,7 +56,7 @@ export class MailingListSignupForm {
     this.show_corrected_email_modal = false;
     try {
       const response = await fetch(
-        "http://localhost:4000/store/mailing-list-signup",
+        "https://amplify.jumpcomedy.com/store/mailing-list-signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -133,6 +133,7 @@ export class MailingListSignupForm {
 
             <div class="w-full md:w-1/4">
               <button
+                id={"submit-button"}
                 type="submit"
                 class="font-bold w-full border-2 text-sm p-2"
                 style={{
