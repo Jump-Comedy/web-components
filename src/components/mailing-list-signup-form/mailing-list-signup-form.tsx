@@ -31,7 +31,7 @@ export class MailingListSignupForm {
   @Prop() inputFocusBorderColor: string = "transparent"; // transparent
   @Prop() inputFocusRingColor: string = "transparent"; // transparent
 
-  @Prop() mailing_list_id: string;
+  @Prop() mailingListId: string;
 
   // messages
   @State() message;
@@ -62,7 +62,7 @@ export class MailingListSignupForm {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: opts.email,
-            mailing_list_id: this.mailing_list_id,
+            mailing_list_id: this.mailingListId,
             ignore_incorrect_email_warning: opts.ignore_incorrect_email_warning,
           }),
         },

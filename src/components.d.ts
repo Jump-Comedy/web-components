@@ -20,8 +20,8 @@ export namespace Components {
         "inputFocusRingColor": string;
         "inputPlaceholderColor": string;
         "inputTextColor": string;
+        "mailingListId": string;
         "mailingListNotFoundMessage": string;
-        "mailing_list_id": string;
         "signUpButtonLabel": string;
         "successMessage": string;
     }
@@ -73,8 +73,8 @@ declare namespace LocalJSX {
         "inputFocusRingColor"?: string;
         "inputPlaceholderColor"?: string;
         "inputTextColor"?: string;
+        "mailingListId"?: string;
         "mailingListNotFoundMessage"?: string;
-        "mailing_list_id"?: string;
         "signUpButtonLabel"?: string;
         "successMessage"?: string;
     }
