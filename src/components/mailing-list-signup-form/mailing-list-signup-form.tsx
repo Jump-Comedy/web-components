@@ -13,6 +13,11 @@ import {
   formAssociated: true,
 })
 export class MailingListSignupForm {
+  constructor() {
+    this.ignore_incorrect_email_warning = false;
+    this.show_corrected_email_modal = false;
+  }
+
   @Prop() mailing_list_id: string;
   @Element() el: HTMLElement;
   @AttachInternals() internals: ElementInternals;
@@ -22,18 +27,12 @@ export class MailingListSignupForm {
 
   @State() email: string;
 
-  @State() original_email: string;
   @State() corrected_email: string;
-  @State() option_correct_email: string;
-  @State() option_keep_email: string;
-  @State() modal_message;
+  @State() show_corrected_email_modal: boolean;
 
   async handleSubmit(event) {
     event.preventDefault();
-    this.message = "hello there";
-    if (1 > 0) return;
     try {
-      // Make a POST request
       const response = await fetch(
         "https://amplify.jumpcomedy.com/store/mailing-list-signup",
         {
@@ -49,12 +48,13 @@ export class MailingListSignupForm {
 
       if (result.status === "ok") {
         this.email = "";
-        this.message = result.data.message;
+        this.message = result.message;
       } else if (result.status === "error") {
-        this.message = result.data.message;
+        this.message = result.message;
       } else if (result.status === "warning") {
-        if (result.type === "email_corrected") {
-          this.modal_message = result.data.message;
+        if (result.type === "email_correction_available") {
+          this.corrected_email = result.data.corrected_email;
+          this.show_corrected_email_modal = true;
         }
       }
     } catch (error) {
@@ -81,6 +81,7 @@ export class MailingListSignupForm {
   render() {
     return (
       <form
+        id={"mailing-list-form"}
         onSubmit={(e) => this.handleSubmit(e)}
         method={"post"}
         action={"https://localhost:4000/store/mailing-list-signup"}
@@ -123,14 +124,32 @@ export class MailingListSignupForm {
           </div>
           <div
             id="warning-modal"
-            class={`modal ${this.corrected_email ? "modal-open" : ""} text-black bg-white text-lg p-2`}
+            class={`modal ${this.show_corrected_email_modal ? "modal-open" : ""} text-black bg-white text-lg p-2`}
           >
             <div class="modal-box">
-              <div id="warning-modal-content">{this.modal_message}</div>
+              <div id="warning-modal-content text-bold mb-4">
+                We noticed you may have made a typo? Did you mean to enter{" "}
+                <strong>{this.email}</strong> or did you mean{" "}
+                <strong>{this.corrected_email}</strong>?
+              </div>
               <div class={"flex gap-x-3"}>
-                <button class={"btn btn-sm"}>{this.option_keep_email}</button>
-                <button class={"btn btn-sm"}>
-                  {this.option_correct_email}
+                <button class={"btn btn-sm"} type={"button"}>
+                  Use {this.email}
+                </button>
+                <button
+                  type={"button"}
+                  class={"btn btn-sm"}
+                  onClick={() => {
+                    this.ignore_incorrect_email_warning = true;
+                    this.email = this.ignore_incorrect_email_warning;
+                    const form = this.el.shadowRoot.querySelector(
+                      "mailing-list-form",
+                    ) as HTMLFormElement;
+                    form.submit();
+                    this.show_corrected_email_modal = false;
+                  }}
+                >
+                  Use {this.corrected_email}
                 </button>
               </div>
             </div>
