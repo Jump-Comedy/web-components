@@ -45,13 +45,6 @@ export class MailingListSignupForm {
   }
 
   async submitForm(opts: SubmitOptions) {
-    console.log("submitting form....", opts, this.email);
-    try {
-      // Some code that might throw an error
-      throw new Error("This is a sample error");
-    } catch (error) {
-      console.log("Error stack trace:", error.stack);
-    }
     this.show_corrected_email_modal = false;
     try {
       const response = await fetch(
