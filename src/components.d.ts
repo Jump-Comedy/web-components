@@ -7,6 +7,18 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MailingListSignupForm {
+        "buttonBgColor": string;
+        "buttonBorderColor": string;
+        "buttonHoverBgColor": string;
+        "buttonHoverBorderColor": string;
+        "buttonHoverTextColor": string;
+        "buttonTextColor": string;
+        "inputBgColor": string;
+        "inputBorderColor": string;
+        "inputFocusBorderColor": string;
+        "inputFocusRingColor": string;
+        "inputPlaceholderColor": string;
+        "inputTextColor": string;
         "mailing_list_id": string;
     }
     interface MyComponent {
@@ -44,6 +56,18 @@ declare global {
 }
 declare namespace LocalJSX {
     interface MailingListSignupForm {
+        "buttonBgColor"?: string;
+        "buttonBorderColor"?: string;
+        "buttonHoverBgColor"?: string;
+        "buttonHoverBorderColor"?: string;
+        "buttonHoverTextColor"?: string;
+        "buttonTextColor"?: string;
+        "inputBgColor"?: string;
+        "inputBorderColor"?: string;
+        "inputFocusBorderColor"?: string;
+        "inputFocusRingColor"?: string;
+        "inputPlaceholderColor"?: string;
+        "inputTextColor"?: string;
         "mailing_list_id"?: string;
     }
     interface MyComponent {

@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 type SubmitOptions = { ignore_incorrect_email_warning: boolean; email: string };
 @Component({
   tag: "mailing-list-signup-form",
@@ -7,8 +7,23 @@ type SubmitOptions = { ignore_incorrect_email_warning: boolean; email: string };
   formAssociated: true,
 })
 export class MailingListSignupForm {
+  // Styles
+  @Prop() buttonBorderColor: string = "#67e8f9"; // cyan-300
+  @Prop() buttonBgColor: string = "#67e8f9"; // cyan-300
+  @Prop() buttonTextColor: string = "#000000"; // black
+
+  @Prop() buttonHoverBorderColor: string = "#facc15"; // yellow-300
+  @Prop() buttonHoverBgColor: string = "#000000"; // black
+  @Prop() buttonHoverTextColor: string = "#facc15"; // yellow-300
+
+  @Prop() inputBgColor: string = "#000000"; // black
+  @Prop() inputPlaceholderColor: string = "#ffffff"; // white
+  @Prop() inputTextColor: string = "#ffffff"; // white
+  @Prop() inputBorderColor: string = "#ffffff"; // white
+  @Prop() inputFocusBorderColor: string = "transparent"; // transparent
+  @Prop() inputFocusRingColor: string = "transparent"; // transparent
+
   @Prop() mailing_list_id: string;
-  @Element() el: HTMLElement;
 
   // messages
   @State() message;
@@ -30,6 +45,13 @@ export class MailingListSignupForm {
   }
 
   async submitForm(opts: SubmitOptions) {
+    console.log("submitting form....", opts, this.email);
+    try {
+      // Some code that might throw an error
+      throw new Error("This is a sample error");
+    } catch (error) {
+      console.log("Error stack trace:", error.stack);
+    }
     this.show_corrected_email_modal = false;
     try {
       const response = await fetch(
@@ -83,7 +105,22 @@ export class MailingListSignupForm {
                 name="email"
                 value={this.email}
                 onInput={(event) => this.handleEmailChange(event)}
-                class="outline-none border-transparent focus:border-transparent focus:ring-0 bg-black w-full placeholder-white text-white text-sm p-2 border-b-2 border-b-white"
+                class="outline-none w-full text-sm p-2 border-b-2"
+                style={{
+                  backgroundColor: this.inputBgColor,
+                  color: this.inputTextColor,
+                  borderColor: this.inputBorderColor,
+                }}
+                onFocus={(event: FocusEvent) => {
+                  const target = event.target as HTMLElement;
+                  target.style.borderColor = this.inputFocusBorderColor;
+                  target.style.outlineColor = this.inputFocusRingColor;
+                }}
+                onBlur={(event: FocusEvent) => {
+                  const target = event.target as HTMLElement;
+                  target.style.borderColor = this.inputBorderColor;
+                  target.style.outlineColor = "transparent";
+                }}
                 required={true}
                 maxLength={250}
                 autoComplete="off"
@@ -94,7 +131,24 @@ export class MailingListSignupForm {
             <div class="w-full md:w-1/4">
               <button
                 type="submit"
-                class="font-bold w-full border-2 border-cyan-300 bg-cyan-300 text-sm hover:bg-black text-black hover:text-yellow-300 p-2 hover:border-2 hover:border-yellow-300"
+                class="font-bold w-full border-2 text-sm p-2"
+                style={{
+                  borderColor: this.buttonBorderColor,
+                  backgroundColor: this.buttonBgColor,
+                  color: this.buttonTextColor,
+                }}
+                onMouseOver={(e: MouseEvent) => {
+                  const target = e.currentTarget as HTMLElement;
+                  target.style.backgroundColor = this.buttonHoverBgColor;
+                  target.style.color = this.buttonHoverTextColor;
+                  target.style.borderColor = this.buttonHoverBorderColor;
+                }}
+                onMouseOut={(e: MouseEvent) => {
+                  const target = e.currentTarget as HTMLElement;
+                  target.style.backgroundColor = this.buttonBgColor;
+                  target.style.color = this.buttonTextColor;
+                  target.style.borderColor = this.buttonBorderColor;
+                }}
               >
                 Inn-Vite Me
               </button>
@@ -107,12 +161,11 @@ export class MailingListSignupForm {
             </div>
           )}
           {this.show_corrected_email_modal && (
-            <div
-              id="warning-modal"
-              class={`modal modal-open text-black bg-white text-lg p-2`}
-            >
+            <dialog class={`modal modal-open text-black bg-white text-lg p-2`}>
               <div class="modal-box">
-                <div class={"flex flex-col gap-y-4 justify-center"}>
+                <div
+                  class={"flex flex-col gap-y-4 justify-center items-center"}
+                >
                   <div id="text-bold">
                     We noticed you may have made a typo? Did you mean to enter{" "}
                     <strong>{this.email}</strong> or did you mean{" "}
@@ -120,7 +173,12 @@ export class MailingListSignupForm {
                   </div>
                   <div class={"flex gap-x-3"}>
                     <button
-                      style={{ background: "red", color: "white" }}
+                      type={"button"}
+                      style={{
+                        borderColor: this.buttonBorderColor,
+                        backgroundColor: this.buttonBgColor,
+                        color: this.buttonTextColor,
+                      }}
                       class={"btn btn-sm"}
                       onClick={() => {
                         this.submitForm({
@@ -132,8 +190,13 @@ export class MailingListSignupForm {
                       Use {this.corrected_email}
                     </button>
                     <button
+                      style={{
+                        borderColor: this.buttonBorderColor,
+                        backgroundColor: this.buttonBgColor,
+                        color: this.buttonTextColor,
+                      }}
                       type={"button"}
-                      class={"btn btn-sm btn-primary"}
+                      class={"btn btn-sm"}
                       onClick={() => {
                         this.submitForm({
                           ignore_incorrect_email_warning: true,
@@ -146,7 +209,7 @@ export class MailingListSignupForm {
                   </div>
                 </div>
               </div>
-            </div>
+            </dialog>
           )}
         </div>
       </form>
