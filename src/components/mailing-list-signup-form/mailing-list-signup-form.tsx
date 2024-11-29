@@ -7,19 +7,17 @@ import { Component, h, Prop, Element, State } from "@stencil/core";
   formAssociated: true,
 })
 export class MailingListSignupForm {
-  constructor() {
-    this.ignore_incorrect_email_warning = false;
-    this.show_corrected_email_modal = false;
-  }
-
   @Prop() mailing_list_id: string;
   @Element() el: HTMLElement;
 
-  @State() ignore_incorrect_email_warning;
+  // form data
+  @State() ignore_incorrect_email_warning = false;
   @State() message;
   @State() email: string;
   @State() corrected_email: string;
-  @State() show_corrected_email_modal: boolean;
+
+  // modal control
+  @State() show_corrected_email_modal = false;
 
   async handleSubmit(event) {
     event.preventDefault();
@@ -69,17 +67,6 @@ export class MailingListSignupForm {
         <div class="flex flex-col w-full items-center p-2">
           <div class="flex w-full flex-col md:flex-row gap-2 justify-center items-center">
             <div class="w-full md:w-3/4">
-              <input
-                type="hidden"
-                name="mailing_list_id"
-                value={this.mailing_list_id}
-              />
-              <input
-                type="hidden"
-                name="ignore_incorrect_email_warning"
-                value={this.ignore_incorrect_email_warning}
-              />
-
               <input
                 id="email"
                 type="email"
