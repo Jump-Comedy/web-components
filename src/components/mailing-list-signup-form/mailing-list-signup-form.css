@@ -2,6 +2,21 @@
   display: block;
 }
 
+.custom-modal {
+  position: fixed; /* Fixes the modal to the viewport, ignoring the iframe dimensions */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure it overlays everything */
+  width: auto; /* Adjust width if needed */
+  max-width: 90%; /* Optional: To prevent large modals */
+}
+
+html, body {
+  overflow: visible; /* Ensure the iframe content doesn't clip */
+}
+
+
 /*
 ! tailwindcss v3.3.5 | MIT License | https://tailwindcss.com
 */

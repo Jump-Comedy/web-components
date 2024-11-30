@@ -166,7 +166,7 @@ export class MailingListSignupForm {
             </div>
           )}
           {this.show_corrected_email_modal && (
-            <dialog class={`modal modal-open`}>
+            <dialog class={`modal modal-open custom-modal`}>
               <div class="modal-box bg-white text-black">
                 <div
                   class={"flex flex-col gap-y-4 justify-center items-center"}
