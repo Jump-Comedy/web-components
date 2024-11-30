@@ -17,6 +17,10 @@
       "import": "./dist/components/my-component.js",
       "types": "./dist/components/my-component.d.ts"
     },
+    "./mailing-list-signup-form": {
+      "import": "./dist/components/mailing-list-signup-form.js",
+      "types": "./dist/components/mailing-list-signup-form.d.ts"
+    },
     "./loader": {
       "import": "./loader/index.js",
       "require": "./loader/index.cjs",
@@ -57,6 +61,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "prettier": "^3.4.1"
   }
 }

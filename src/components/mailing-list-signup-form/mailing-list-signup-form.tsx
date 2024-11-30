@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Prop, State, Env } from "@stencil/core";
 type SubmitOptions = { ignore_incorrect_email_warning: boolean; email: string };
 @Component({
   tag: "mailing-list-signup-form",
@@ -56,7 +56,7 @@ export class MailingListSignupForm {
     this.show_corrected_email_modal = false;
     try {
       const response = await fetch(
-        "https://amplify.jumpcomedy.com/store/mailing-list-signup",
+        `${Env.AMPLIFY_BASE_URL}/store/mailing-list-signup`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -175,7 +175,7 @@ export class MailingListSignupForm {
                     <strong>{this.email}</strong> or did you mean{" "}
                     <strong>{this.corrected_email}</strong>?
                   </div>
-                  <div class={"flex gap-x-3"}>
+                  <div class={"flex flex-col gap-2"}>
                     <button
                       type={"button"}
                       style={{
@@ -209,6 +209,21 @@ export class MailingListSignupForm {
                       }}
                     >
                       Keep {this.email}
+                    </button>
+                    <button
+                      style={{
+                        borderColor: this.buttonBorderColor,
+                        backgroundColor: this.buttonBgColor,
+                        color: this.buttonTextColor,
+                      }}
+                      type={"button"}
+                      class={"btn btn-sm"}
+                      onClick={() => {
+                        this.show_corrected_email_modal = false;
+                        this.corrected_email = "";
+                      }}
+                    >
+                      Enter different email
                     </button>
                   </div>
                 </div>
