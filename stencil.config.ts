@@ -6,6 +6,7 @@ export const config: Config = {
   env: {
     AMPLIFY_BASE_URL: process.env.AMPLIFY_BASE_URL,
   },
+  buildEs5: true,
   outputTargets: [
     {
       type: "dist-custom-elements",
@@ -14,7 +15,6 @@ export const config: Config = {
     },
     {
       type: "dist",
-      esmLoaderPath: "../loader", // Creates a loader script
     },
   ],
   testing: {
