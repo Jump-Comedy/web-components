@@ -1299,6 +1299,10 @@ html {
   border-bottom-left-radius: 0px;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .flex {
   display: flex;
 }

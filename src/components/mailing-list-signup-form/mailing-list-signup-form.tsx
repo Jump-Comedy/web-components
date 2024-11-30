@@ -171,7 +171,7 @@ export class MailingListSignupForm {
                 <div
                   class={"flex flex-col gap-y-4 justify-center items-center"}
                 >
-                  <div id="text-bold text-md">
+                  <div class="text-sm mb-2">
                     We noticed you may have made a typo? Did you mean to enter{" "}
                     <strong>{this.email}</strong> or did you mean{" "}
                     <strong>{this.corrected_email}</strong>?
