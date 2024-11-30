@@ -53,6 +53,7 @@ export class MailingListSignupForm {
   }
 
   async submitForm(opts: SubmitOptions) {
+    this.message = "";
     this.show_corrected_email_modal = false;
     try {
       const response = await fetch(
