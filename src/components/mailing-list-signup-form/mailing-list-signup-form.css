@@ -13,6 +13,7 @@
 }
 
 html, body {
+  height: 100%; /* Ensure the iframe content height is 100% */
   overflow: visible; /* Ensure the iframe content doesn't clip */
 }
 
