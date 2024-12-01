@@ -4,12 +4,10 @@
 
 .custom-modal {
   position: fixed; /* Fixes the modal to the viewport, ignoring the iframe dimensions */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   z-index: 9999; /* Ensure it overlays everything */
   width: auto; /* Adjust width if needed */
-  max-width: 90%; /* Optional: To prevent large modals */
 }
 
 html, body {
