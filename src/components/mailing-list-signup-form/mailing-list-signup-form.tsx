@@ -180,8 +180,8 @@ export class MailingListSignupForm {
                   class={"flex flex-col gap-y-4 justify-center items-center"}
                 >
                   <div class="text-sm mb-2">
-                    We noticed you may have made a typo? Did you mean to enter{" "}
-                    <strong>{this.email}</strong> or did you mean{" "}
+                    Hi there, we noticed there may be a typo. You entered{" "}
+                    <strong>{this.email}</strong>, did you mean{" "}
                     <strong>{this.corrected_email}</strong>?
                   </div>
                   <div class={"flex flex-col gap-2"}>
