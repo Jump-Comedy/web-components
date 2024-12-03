@@ -16,7 +16,7 @@ export class MailingListSignupForm {
   @Prop() mailingListNotFoundMessage = "Mailing List not found";
 
   // Styles
-  @Prop() modalBackgroundColor: string = "#000";
+  @Prop() modalBackgroundColor: string = "#222";
   @Prop() modalTextColor: string = "#fff";
   @Prop() buttonBorderColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonBgColor: string = "#67e8f9"; // cyan-300
@@ -183,7 +183,15 @@ export class MailingListSignupForm {
                     <div class="text-sm mb-2">
                       Hi there, we noticed there may be a typo. You entered{" "}
                       <strong>{this.email}</strong>, did you mean{" "}
-                      <strong>{this.corrected_email}</strong>?
+                      <strong>
+                        <span
+                          innerHTML={highlightEmailDifferences(
+                            this.email,
+                            this.corrected_email,
+                          )}
+                        ></span>
+                      </strong>
+                      ?
                     </div>
                     <div>
                       <button
@@ -227,7 +235,13 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Subscribe as {this.corrected_email}
+                      Subscribe as
+                      <span
+                        innerHTML={highlightEmailDifferences(
+                          this.email,
+                          this.corrected_email,
+                        )}
+                      ></span>
                     </button>
                     <button
                       style={{
@@ -269,5 +283,35 @@ export class MailingListSignupForm {
         </div>
       </form>
     );
+  }
+}
+
+function highlightEmailDifferences(original, corrected) {
+  try {
+    // Helper to wrap text in a span for underlining
+    const wrapWithSpan = (text) =>
+      `<span class='underline text-red-600'>${text}</span>`;
+
+    let result = "";
+    let i = 0,
+      j = 0;
+
+    while (i < original.length || j < corrected.length) {
+      if (original[i] === corrected[j]) {
+        // Characters match, add to result without highlighting
+        result += corrected[j] || "";
+        i++;
+        j++;
+      } else {
+        // Highlight differing characters
+        if (corrected[j]) result += wrapWithSpan(corrected[j]);
+        j++;
+        if (original[i]) i++;
+      }
+    }
+
+    return result;
+  } catch (e) {
+    return corrected;
   }
 }
