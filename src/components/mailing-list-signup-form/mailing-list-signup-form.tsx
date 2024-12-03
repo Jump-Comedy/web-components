@@ -200,7 +200,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Change to {this.corrected_email}
+                      Subscribe as {this.corrected_email}
                     </button>
                     <button
                       style={{
