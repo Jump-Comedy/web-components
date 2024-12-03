@@ -22,6 +22,8 @@ export namespace Components {
         "inputTextColor": string;
         "mailingListId": string;
         "mailingListNotFoundMessage": string;
+        "modalBackgroundColor": string;
+        "modalTextColor": string;
         "signUpButtonLabel": string;
         "successMessage": string;
     }
@@ -75,6 +77,8 @@ declare namespace LocalJSX {
         "inputTextColor"?: string;
         "mailingListId"?: string;
         "mailingListNotFoundMessage"?: string;
+        "modalBackgroundColor"?: string;
+        "modalTextColor"?: string;
         "signUpButtonLabel"?: string;
         "successMessage"?: string;
     }

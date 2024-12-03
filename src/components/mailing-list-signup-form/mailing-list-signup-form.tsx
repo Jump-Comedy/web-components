@@ -16,6 +16,8 @@ export class MailingListSignupForm {
   @Prop() mailingListNotFoundMessage = "Mailing List not found";
 
   // Styles
+  @Prop() modalBackgroundColor: string = "#000";
+  @Prop() modalTextColor: string = "#fff";
   @Prop() buttonBorderColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonBgColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonTextColor: string = "#000000"; // black
@@ -167,7 +169,13 @@ export class MailingListSignupForm {
           )}
           {this.show_corrected_email_modal && (
             <dialog class={`modal modal-open custom-modal`}>
-              <div class="modal-box bg-white text-black">
+              <div
+                class="modal-box"
+                style={{
+                  backgroundColor: this.modalBackgroundColor,
+                  color: this.modalTextColor,
+                }}
+              >
                 <div
                   class={"flex flex-col gap-y-4 justify-center items-center"}
                 >
