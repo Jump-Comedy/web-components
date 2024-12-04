@@ -103,7 +103,7 @@ export class MailingListSignupForm {
         onSubmit={(e) => this.handleSubmit(e)}
         method={"post"}
       >
-        <div class="flex flex-col w-full items-center p-2">
+        <div class="flex flex-col w-full md:w-fit items-center p-2">
           <div class="flex w-full flex-col md:flex-row gap-2 justify-center items-center">
             <div class="w-full md:w-3/4">
               <input
@@ -228,7 +228,7 @@ export class MailingListSignupForm {
                       </p>
                     </div>
                   </div>
-                  <div class={"flex flex-col gap-2"}>
+                  <div class={"flex flex-col gap-2 w-full"}>
                     <button
                       type={"button"}
                       style={{
@@ -245,8 +245,9 @@ export class MailingListSignupForm {
                       }}
                     >
                       <div class={"grid grid-cols-2"}>
-                        <div>Subscribe as</div>
+                        <div class={"text-right"}>Subscribe as</div>
                         <div
+                          class={"ml-2 text-left"}
                           innerHTML={highlightEmailDifferences(
                             this.email,
                             this.corrected_email,
@@ -271,8 +272,8 @@ export class MailingListSignupForm {
                       }}
                     >
                       <div class={"grid grid-cols-2"}>
-                        <div>Keep</div>
-                        <div> {this.email}</div>
+                        <div class={"text-right"}>Keep</div>
+                        <div class={"ml-2 text-left"}>{this.email}</div>
                       </div>
                     </button>
                     <button
