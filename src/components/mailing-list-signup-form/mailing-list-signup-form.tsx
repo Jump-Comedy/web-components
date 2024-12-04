@@ -236,7 +236,7 @@ export class MailingListSignupForm {
                         backgroundColor: this.buttonBgColor,
                         color: this.buttonTextColor,
                       }}
-                      class={"btn btn-sm"}
+                      class={"btn btn-xs"}
                       onClick={() => {
                         this.submitForm({
                           ignore_incorrect_email_warning: true,
@@ -262,7 +262,7 @@ export class MailingListSignupForm {
                         color: this.buttonTextColor,
                       }}
                       type={"button"}
-                      class={"btn btn-sm"}
+                      class={"btn btn-xs"}
                       onClick={() => {
                         this.submitForm({
                           ignore_incorrect_email_warning: true,
@@ -282,7 +282,7 @@ export class MailingListSignupForm {
                         color: this.buttonTextColor,
                       }}
                       type={"button"}
-                      class={"btn btn-sm"}
+                      class={"btn btn-xs"}
                       onClick={() => {
                         this.show_corrected_email_modal = false;
                         this.corrected_email = "";
