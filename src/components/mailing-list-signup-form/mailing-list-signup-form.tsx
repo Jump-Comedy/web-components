@@ -21,7 +21,7 @@ export class MailingListSignupForm {
   @Prop() buttonBorderColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonBgColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonTextColor: string = "#000000"; // black
-  @Prop() correctedEmailHighlightColor: string = "#FF0000"; // mred
+  @Prop() correctedEmailHighlightColor: string = "#FF0000"; // red
 
   @Prop() buttonHoverBorderColor: string = "#facc15"; // yellow-300
   @Prop() buttonHoverBgColor: string = "#000000"; // black
