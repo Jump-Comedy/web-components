@@ -181,17 +181,24 @@ export class MailingListSignupForm {
                 >
                   <div class={"flex gap-x-4"}>
                     <div class="text-sm mb-2">
-                      Hi there, we noticed there may be a typo. You entered{" "}
-                      <strong>{this.email}</strong>, did you mean{" "}
-                      <strong>
-                        <span
-                          innerHTML={highlightEmailDifferences(
-                            this.email,
-                            this.corrected_email,
-                          )}
-                        ></span>
-                      </strong>
-                      ?
+                      <p style={{ marginBottom: "6px" }}>
+                        Whoops! There might be a typo.
+                      </p>
+                      <p style={{ marginBottom: "6px" }}>
+                        You entered <strong>{this.email}</strong>
+                      </p>
+                      <p style={{ marginBottom: "6px" }}>
+                        Did you mean{" "}
+                        <strong>
+                          <span
+                            innerHTML={highlightEmailDifferences(
+                              this.email,
+                              this.corrected_email,
+                            )}
+                          ></span>
+                        </strong>
+                        ?
+                      </p>
                     </div>
                     <div>
                       <button
@@ -258,7 +265,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Keep {this.email}
+                      Keep <span> {this.email}</span>
                     </button>
                     <button
                       style={{
