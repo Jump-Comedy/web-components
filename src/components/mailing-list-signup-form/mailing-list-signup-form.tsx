@@ -220,6 +220,7 @@ export class MailingListSignupForm {
                             innerHTML={highlightEmailDifferences(
                               this.email,
                               this.corrected_email,
+                              this.correctedEmailHighlightColor,
                             )}
                           ></span>
                         </strong>
