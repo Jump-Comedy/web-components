@@ -304,9 +304,8 @@ export class MailingListSignupForm {
 function highlightEmailDifferences(original, corrected, highlight_color) {
   try {
     // Helper to wrap text in a span for underlining
-    const wrapWithSpan = (text) => (
-      <span style={{ color: highlight_color }}>${text}</span>
-    );
+    const wrapWithSpan = (text) =>
+      `<span style="color: ${highlight_color}">${text}</span>`;
 
     let result = "";
     let i = 0,
