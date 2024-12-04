@@ -103,7 +103,7 @@ export class MailingListSignupForm {
         onSubmit={(e) => this.handleSubmit(e)}
         method={"post"}
       >
-        <div class="flex flex-col w-full md:w-fit items-center p-2">
+        <div class="flex flex-col w-full items-center p-2">
           <div class="flex w-full flex-col md:flex-row gap-2 justify-center items-center">
             <div class="w-full md:w-3/4">
               <input
@@ -228,7 +228,7 @@ export class MailingListSignupForm {
                       </p>
                     </div>
                   </div>
-                  <div class={"flex flex-col gap-2 w-full"}>
+                  <div class={"flex flex-col gap-2 w-full md:w-fit"}>
                     <button
                       type={"button"}
                       style={{
