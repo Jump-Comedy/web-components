@@ -13,6 +13,7 @@ export namespace Components {
         "buttonHoverBorderColor": string;
         "buttonHoverTextColor": string;
         "buttonTextColor": string;
+        "correctedEmailHighlightColor": string;
         "emailExistsInMailingListMessage": string;
         "inputBgColor": string;
         "inputBorderColor": string;
@@ -68,6 +69,7 @@ declare namespace LocalJSX {
         "buttonHoverBorderColor"?: string;
         "buttonHoverTextColor"?: string;
         "buttonTextColor"?: string;
+        "correctedEmailHighlightColor"?: string;
         "emailExistsInMailingListMessage"?: string;
         "inputBgColor"?: string;
         "inputBorderColor"?: string;
