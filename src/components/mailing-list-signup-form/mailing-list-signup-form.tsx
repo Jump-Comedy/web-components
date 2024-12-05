@@ -224,7 +224,7 @@ export class MailingListSignupForm {
                             )}
                           ></span>
                         </strong>
-                        ?
+                        &nbsp;?
                       </p>
                     </div>
                   </div>
@@ -236,7 +236,7 @@ export class MailingListSignupForm {
                         backgroundColor: this.buttonBgColor,
                         color: this.buttonTextColor,
                       }}
-                      class={"btn btn-xs"}
+                      class={"btn btn-xs text-center"}
                       onClick={() => {
                         this.submitForm({
                           ignore_incorrect_email_warning: true,
@@ -244,17 +244,15 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      <div class={"grid grid-cols-2"}>
-                        <div class={"text-right"}>Subscribe as</div>
-                        <div
-                          class={"ml-2 text-left"}
-                          innerHTML={highlightEmailDifferences(
-                            this.email,
-                            this.corrected_email,
-                            this.correctedEmailHighlightColor,
-                          )}
-                        ></div>
-                      </div>
+                      Subscribe as
+                      <span
+                        class={"ml-1"}
+                        innerHTML={highlightEmailDifferences(
+                          this.email,
+                          this.corrected_email,
+                          this.correctedEmailHighlightColor,
+                        )}
+                      ></span>
                     </button>
                     <button
                       style={{
@@ -263,7 +261,7 @@ export class MailingListSignupForm {
                         color: this.buttonTextColor,
                       }}
                       type={"button"}
-                      class={"btn btn-xs"}
+                      class={"btn btn-xs text-center"}
                       onClick={() => {
                         this.submitForm({
                           ignore_incorrect_email_warning: true,
@@ -271,10 +269,8 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      <div class={"grid grid-cols-2"}>
-                        <div class={"text-right"}>Keep</div>
-                        <div class={"ml-2 text-left"}>{this.email}</div>
-                      </div>
+                      Keep
+                      <span class={"ml-1"}>{this.email}</span>
                     </button>
                     <button
                       style={{
@@ -283,7 +279,7 @@ export class MailingListSignupForm {
                         color: this.buttonTextColor,
                       }}
                       type={"button"}
-                      class={"btn btn-xs"}
+                      class={"btn btn-xs text-center"}
                       onClick={() => {
                         this.show_corrected_email_modal = false;
                         this.corrected_email = "";

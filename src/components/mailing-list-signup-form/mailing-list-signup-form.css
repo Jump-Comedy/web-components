@@ -1299,16 +1299,12 @@ html {
   margin-bottom: 0.5rem;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
+.ml-1 {
+  margin-left: 0.25rem;
 }
 
 .flex {
   display: flex;
-}
-
-.grid {
-  display: grid;
 }
 
 .hidden {
@@ -1317,10 +1313,6 @@ html {
 
 .w-full {
   width: 100%;
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1364,12 +1356,8 @@ html {
   padding: 0.5rem;
 }
 
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
+.text-center {
+  text-align: center;
 }
 
 .text-lg {
