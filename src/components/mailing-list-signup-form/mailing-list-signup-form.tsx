@@ -244,7 +244,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Subscribe as
+                      Subscribe as:
                       <span
                         class={"ml-1"}
                         innerHTML={highlightEmailDifferences(
@@ -269,7 +269,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Keep
+                      Keep:
                       <span class={"ml-1"}>{this.email}</span>
                     </button>
                     <button
