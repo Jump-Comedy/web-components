@@ -203,7 +203,7 @@ export class MailingListSignupForm {
                         <strong>{this.email}</strong>
                       </p>
                       <p style={{ marginBottom: "6px" }}>
-                        Did you mean:&nbsp;
+                        Did you mean:&nbsp;&nbsp;
                         <strong>
                           <span
                             innerHTML={highlightEmailDifferences(
