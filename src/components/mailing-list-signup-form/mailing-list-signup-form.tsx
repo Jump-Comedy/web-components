@@ -145,18 +145,6 @@ export class MailingListSignupForm {
                   backgroundColor: this.buttonBgColor,
                   color: this.buttonTextColor,
                 }}
-                onMouseOver={(e: MouseEvent) => {
-                  const target = e.currentTarget as HTMLElement;
-                  target.style.backgroundColor = this.buttonHoverBgColor;
-                  target.style.color = this.buttonHoverTextColor;
-                  target.style.borderColor = this.buttonHoverBorderColor;
-                }}
-                onMouseOut={(e: MouseEvent) => {
-                  const target = e.currentTarget as HTMLElement;
-                  target.style.backgroundColor = this.buttonBgColor;
-                  target.style.color = this.buttonTextColor;
-                  target.style.borderColor = this.buttonBorderColor;
-                }}
               >
                 {this.signUpButtonLabel}
               </button>
