@@ -245,7 +245,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Subscribe as:
+                      Join as
                       <span
                         class={"ml-1"}
                         innerHTML={highlightEmailDifferences(
@@ -270,7 +270,7 @@ export class MailingListSignupForm {
                         });
                       }}
                     >
-                      Keep:
+                      Keep as
                       <span class={"ml-1"}>
                         <strong>{this.email}</strong>
                       </span>
