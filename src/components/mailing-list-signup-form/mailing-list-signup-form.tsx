@@ -21,7 +21,7 @@ export class MailingListSignupForm {
   @Prop() buttonBorderColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonBgColor: string = "#67e8f9"; // cyan-300
   @Prop() buttonTextColor: string = "#000000"; // black
-  @Prop() correctedEmailHighlightColor: string = "#FF0000"; // red
+  @Prop() correctedEmailHighlightColor: string = "#FF46A2"; // red
 
   @Prop() buttonHoverBorderColor: string = "#facc15"; // yellow-300
   @Prop() buttonHoverBgColor: string = "#000000"; // black
@@ -207,14 +207,15 @@ export class MailingListSignupForm {
                 >
                   <div class={"flex gap-x-4"}>
                     <div class="text-sm mb-2">
-                      <p style={{ marginBottom: "6px" }}>
+                      <p style={{ marginBottom: "6px", textAlign: "center" }}>
                         Whoops! There might be a typo.
                       </p>
                       <p style={{ marginBottom: "6px" }}>
-                        You entered <strong>{this.email}</strong>
+                        You entered:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <strong>{this.email}</strong>
                       </p>
                       <p style={{ marginBottom: "6px" }}>
-                        Did you mean{" "}
+                        Did you mean:&nbsp;
                         <strong>
                           <span
                             innerHTML={highlightEmailDifferences(
@@ -270,7 +271,9 @@ export class MailingListSignupForm {
                       }}
                     >
                       Keep:
-                      <span class={"ml-1"}>{this.email}</span>
+                      <span class={"ml-1"}>
+                        <strong>{this.email}</strong>
+                      </span>
                     </button>
                     <button
                       style={{
