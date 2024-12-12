@@ -6,6 +6,19 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface EventList {
+        "brandId": any;
+        "buyLinkBgColor": string;
+        "buyLinkTextColor": string;
+        "domain": string;
+        "eventTitleColor": string;
+        "mainBgColor": string;
+        "showtimeBgColor": string;
+        "showtimeTextColor": string;
+        "venueAddressTextColor": string;
+        "venueNameTextColor": string;
+        "widgetBgColor": string;
+    }
     interface MailingListSignupForm {
         "buttonBgColor": string;
         "buttonBorderColor": string;
@@ -44,6 +57,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLEventListElement extends Components.EventList, HTMLStencilElement {
+    }
+    var HTMLEventListElement: {
+        prototype: HTMLEventListElement;
+        new (): HTMLEventListElement;
+    };
     interface HTMLMailingListSignupFormElement extends Components.MailingListSignupForm, HTMLStencilElement {
     }
     var HTMLMailingListSignupFormElement: {
@@ -57,11 +76,25 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "event-list": HTMLEventListElement;
         "mailing-list-signup-form": HTMLMailingListSignupFormElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface EventList {
+        "brandId"?: any;
+        "buyLinkBgColor"?: string;
+        "buyLinkTextColor"?: string;
+        "domain"?: string;
+        "eventTitleColor"?: string;
+        "mainBgColor"?: string;
+        "showtimeBgColor"?: string;
+        "showtimeTextColor"?: string;
+        "venueAddressTextColor"?: string;
+        "venueNameTextColor"?: string;
+        "widgetBgColor"?: string;
+    }
     interface MailingListSignupForm {
         "buttonBgColor"?: string;
         "buttonBorderColor"?: string;
@@ -99,6 +132,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "event-list": EventList;
         "mailing-list-signup-form": MailingListSignupForm;
         "my-component": MyComponent;
     }
@@ -107,6 +141,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "event-list": LocalJSX.EventList & JSXBase.HTMLAttributes<HTMLEventListElement>;
             "mailing-list-signup-form": LocalJSX.MailingListSignupForm & JSXBase.HTMLAttributes<HTMLMailingListSignupFormElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
