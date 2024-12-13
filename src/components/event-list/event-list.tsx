@@ -31,7 +31,7 @@ export class EventWidget {
 
   @Watch("typeId")
   @Watch("type")
-  watchPropHandler(newValue: boolean, oldValue: boolean) {
+  watchPropHandler() {
     this.fetchData();
   }
 
