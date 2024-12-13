@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Env } from "@stencil/core";
+import { Component, h, Prop, State, Env, Watch } from "@stencil/core";
 import { formatDate } from "@jumpcomedy/utils/dist";
 @Component({
   tag: "event-list",
@@ -10,7 +10,8 @@ export class EventWidget {
   @State()
   events: any[];
 
-  @Prop() brandId;
+  @Prop() typeId;
+  @Prop() type;
 
   @Prop() widgetBgColor = "#10C391";
   @Prop() mainBgColor = "#C31042";
@@ -25,10 +26,20 @@ export class EventWidget {
   @Prop() domain = "https://www.jumpcomedy.com";
 
   connectedCallback() {
+    this.fetchData();
+  }
+
+  @Watch("typeId")
+  @Watch("type")
+  watchPropHandler(newValue: boolean, oldValue: boolean) {
+    this.fetchData();
+  }
+
+  fetchData() {
     fetch(
       `${Env.AMPLIFY_BASE_URL}/store/events?` +
         new URLSearchParams({
-          brand_id: this.brandId,
+          [`${this.type}_id`]: this.typeId,
         }),
       {
         method: "GET",
