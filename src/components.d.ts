@@ -7,18 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface EventList {
-        "buyLinkBgColor": string;
-        "buyLinkTextColor": string;
         "domain": string;
-        "eventTitleColor": string;
-        "mainBgColor": string;
-        "showtimeBgColor": string;
-        "showtimeTextColor": string;
-        "type": any;
-        "typeId": any;
-        "venueAddressTextColor": string;
-        "venueNameTextColor": string;
-        "widgetBgColor": string;
+        "draftMode": boolean;
+        "reRender": number;
+        "widgetId": any;
     }
     interface MailingListSignupForm {
         "buttonBgColor": string;
@@ -84,18 +76,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface EventList {
-        "buyLinkBgColor"?: string;
-        "buyLinkTextColor"?: string;
         "domain"?: string;
-        "eventTitleColor"?: string;
-        "mainBgColor"?: string;
-        "showtimeBgColor"?: string;
-        "showtimeTextColor"?: string;
-        "type"?: any;
-        "typeId"?: any;
-        "venueAddressTextColor"?: string;
-        "venueNameTextColor"?: string;
-        "widgetBgColor"?: string;
+        "draftMode"?: boolean;
+        "reRender"?: number;
+        "widgetId"?: any;
     }
     interface MailingListSignupForm {
         "buttonBgColor"?: string;

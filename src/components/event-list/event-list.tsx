@@ -10,52 +10,56 @@ export class EventWidget {
   @State()
   events: any[];
 
-  @Prop() typeId;
-  @Prop() type;
+  @State()
+  colors: any[];
 
-  @Prop() widgetBgColor = "#10C391";
-  @Prop() mainBgColor = "#C31042";
-  @Prop() showtimeBgColor = "#1042C3";
-  @Prop() showtimeTextColor = "#ffffff";
-  @Prop() eventTitleColor = "#ffffff";
-  @Prop() venueNameTextColor = "#eeeeee";
-  @Prop() venueAddressTextColor = "#eeeeee";
-  @Prop() buyLinkBgColor = "#000000";
-  @Prop() buyLinkTextColor = "#ffffff";
+  @Prop() widgetId;
+
+  @Prop() draftMode = false;
 
   @Prop() domain = "https://www.jumpcomedy.com";
+
+  @Prop() reRender = 1;
+
+  getColor(name) {
+    console.log(name, this.colors);
+    const color = this.colors.find((c) => c.property === name);
+    return color ? color.value : "#000000";
+  }
 
   connectedCallback() {
     this.fetchData();
   }
 
-  @Watch("typeId")
-  @Watch("type")
+  @Watch("reRender")
   watchPropHandler() {
     this.fetchData();
   }
 
   fetchData() {
     fetch(
-      `${Env.AMPLIFY_BASE_URL}/store/events?` +
+      `${Env.AMPLIFY_BASE_URL}/store/widgets/${this.widgetId}?` +
         new URLSearchParams({
-          [`${this.type}_id`]: this.typeId,
+          draft_mode: this.draftMode + "",
         }),
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       },
     ).then((r) => {
-      r.json().then((j) => (this.events = j.data));
+      r.json().then((json) => {
+        this.events = json.data.events;
+        this.colors = json.data.config.colors;
+      });
     });
   }
 
   render() {
-    if (!this.events) return <div></div>;
+    if (!this.events || !this.colors) return <div></div>;
     return (
       <div
         class="m-auto max-w-4xl flex flex-col gap-y-6"
-        style={{ backgroundColor: this.widgetBgColor }}
+        style={{ backgroundColor: this.getColor("widget-bg-color") }}
       >
         {this.events.map((event) => (
           <div class="border bg-primary border-white grid grid-cols-1 sm:grid-cols-2">
@@ -68,12 +72,12 @@ export class EventWidget {
             </div>
             <div
               class="grid grid-cols-1 place-content-center p-6"
-              style={{ backgroundColor: this.mainBgColor }}
+              style={{ backgroundColor: this.getColor("main-bg-color") }}
             >
               <div class="flex gap-4 flex-col text-center">
                 <div
                   class="text-3xl font-bold"
-                  style={{ color: this.eventTitleColor }}
+                  style={{ color: this.getColor("event-title-color") }}
                 >
                   {event.title}
                 </div>
@@ -83,8 +87,8 @@ export class EventWidget {
                       <div
                         class={"p-1 rounded"}
                         style={{
-                          color: this.showtimeTextColor,
-                          backgroundColor: this.showtimeBgColor,
+                          color: this.getColor("showtime-text-color"),
+                          backgroundColor: this.getColor("showtime-bg-color"),
                         }}
                       >
                         {formatDate(v.startsAt)}
@@ -96,13 +100,13 @@ export class EventWidget {
                   <div
                     class="uppercase font-bold text-lg"
                     style={{
-                      color: this.venueNameTextColor,
+                      color: this.getColor("venue-name-text-color"),
                     }}
                   >
                     {event.venueArrangement.venue.name}
                   </div>
                   <div
-                    style={{ color: this.venueAddressTextColor }}
+                    style={{ color: this.getColor("venue-address-text-color") }}
                     class={"flex flex-col"}
                   >
                     <div>{event.venueArrangement.venue.address}</div>
@@ -117,8 +121,8 @@ export class EventWidget {
                   <a
                     target="_top"
                     style={{
-                      backgroundColor: this.buyLinkBgColor,
-                      color: this.buyLinkTextColor,
+                      backgroundColor: this.getColor("buy-link-bg-color"),
+                      color: this.getColor("buy-link-text-color"),
                     }}
                     href={`${this.domain}/e/${event.handle}`}
                     class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl hover:bg-accent hover:opacity-80"
