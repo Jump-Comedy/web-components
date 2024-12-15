@@ -50,8 +50,8 @@ export class EventWidget {
       r.json().then((json) => {
         this.events = json.data.events;
         this.colors = json.data.config.colors;
-        if (json.data.domain) {
-          this.domain = json.data.domain;
+        if (json.data.config.domain) {
+          this.domain = json.data.config.domain;
         }
       });
     });
