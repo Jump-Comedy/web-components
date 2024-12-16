@@ -94,8 +94,11 @@ export class EventWidget {
                         }}
                       >
                         {formatDate(v.startsAt)}
-                        {v.low_stock_message && (
+                        {v.low_stock_message && v.inventory_quantity > 0 && (
                           <div class={"text-xs"}>{v.low_stock_message}</div>
+                        )}
+                        {v.inventory_quantity <= 0 && (
+                          <div class={"text-xs"}>SOLD OUT</div>
                         )}
                       </div>
                     ))}
@@ -123,17 +126,29 @@ export class EventWidget {
                   </div>
                 </div>
                 <div>
-                  <a
-                    target="_top"
-                    style={{
-                      backgroundColor: this.getColor("buy-link-bg-color"),
-                      color: this.getColor("buy-link-text-color"),
-                    }}
-                    href={`${this.domain}/e/${event.handle}`}
-                    class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl hover:bg-accent hover:opacity-80"
-                  >
-                    Get Tickets
-                  </a>
+                  {event.is_out_of_stock ? (
+                    <span
+                      class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl"
+                      style={{
+                        backgroundColor: this.getColor("buy-link-bg-color"),
+                        color: this.getColor("buy-link-text-color"),
+                      }}
+                    >
+                      SOLD OUT!
+                    </span>
+                  ) : (
+                    <a
+                      target="_top"
+                      style={{
+                        backgroundColor: this.getColor("buy-link-bg-color"),
+                        color: this.getColor("buy-link-text-color"),
+                      }}
+                      href={`${this.domain}/e/${event.handle}`}
+                      class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl hover:bg-accent hover:opacity-80"
+                    >
+                      Get Tickets
+                    </a>
+                  )}
                 </div>
                 <div class="w-40 m-auto">
                   <div class="grid grid-cols-3 gap-4 text-center"></div>
