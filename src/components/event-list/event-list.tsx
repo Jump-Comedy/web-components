@@ -84,16 +84,19 @@ export class EventWidget {
                   {event.title}
                 </div>
                 <div class="flex gap-4 justify-center flex-wrap shows-container">
-                  <div class="rounded text-white text-lg p-1 border-none bg-secondary">
+                  <div class="rounded text-white text-md p-1 border-none bg-secondary">
                     {event.variants.map((v) => (
                       <div
-                        class={"p-1 rounded"}
+                        class={"p-1 rounded m-1"}
                         style={{
                           color: this.getColor("showtime-text-color"),
                           backgroundColor: this.getColor("showtime-bg-color"),
                         }}
                       >
                         {formatDate(v.startsAt)}
+                        {v.low_stock_message && (
+                          <div class={"text-xs"}>{v.low_stock_message}</div>
+                        )}
                       </div>
                     ))}
                   </div>

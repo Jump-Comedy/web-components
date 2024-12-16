@@ -554,6 +554,10 @@ video {
   display: none;
 }
 
+.m-1 {
+  margin: 0.25rem;
+}
+
 .m-auto {
   margin: auto;
 }
@@ -667,6 +671,11 @@ video {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-bold {
