@@ -94,10 +94,10 @@ export class EventWidget {
                         }}
                       >
                         {formatDate(v.startsAt)}
-                        {v.low_stock_message && v.inventory_quantity > 0 && (
+                        {v.low_stock_message && !v.is_out_of_stock && (
                           <div class={"text-xs"}>{v.low_stock_message}</div>
                         )}
-                        {v.inventory_quantity <= 0 && (
+                        {v.is_out_of_stock && (
                           <div class={"text-xs"}>SOLD OUT</div>
                         )}
                       </div>
