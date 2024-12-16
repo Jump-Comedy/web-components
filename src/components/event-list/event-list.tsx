@@ -22,7 +22,6 @@ export class EventWidget {
   @Prop() reRender = 1;
 
   getColor(name) {
-    console.log(name, this.colors);
     const color = this.colors.find((c) => c.property === name);
     return color ? color.value : "#000000";
   }
