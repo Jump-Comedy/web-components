@@ -84,7 +84,7 @@ export class EventWidget {
                   {event.title}
                 </div>
                 <div class="flex gap-4 justify-center flex-wrap shows-container">
-                  <div class="rounded text-white text-md p-1 border-none bg-secondary">
+                  <div class="rounded text-white text-lg p-1 border-none bg-secondary">
                     {event.variants.map((v) => (
                       <div
                         class={"p-1 rounded m-1"}
@@ -143,7 +143,7 @@ export class EventWidget {
                         backgroundColor: this.getColor("buy-link-bg-color"),
                         color: this.getColor("buy-link-text-color"),
                       }}
-                      href={`${this.domain}/e/${event.handle}`}
+                      href={`https://${this.domain}/e/${event.handle}`}
                       class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl hover:bg-accent hover:opacity-80"
                     >
                       Get Tickets
