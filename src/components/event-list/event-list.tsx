@@ -143,7 +143,7 @@ export class EventWidget {
                         backgroundColor: this.getColor("buy-link-bg-color"),
                         color: this.getColor("buy-link-text-color"),
                       }}
-                      href={`https://${this.domain}/e/${event.handle}`}
+                      href={`${this.domain}/e/${event.handle}`}
                       class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl hover:bg-accent hover:opacity-80"
                     >
                       Get Tickets
