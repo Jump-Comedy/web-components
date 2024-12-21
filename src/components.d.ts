@@ -7,7 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface EventList {
-        "domain": string;
         "draftMode": boolean;
         "reRender": number;
         "widgetId": any;
@@ -76,7 +75,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface EventList {
-        "domain"?: string;
         "draftMode"?: boolean;
         "reRender"?: number;
         "widgetId"?: any;

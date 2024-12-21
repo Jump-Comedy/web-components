@@ -17,7 +17,11 @@ export class EventWidget {
 
   @Prop() draftMode = false;
 
-  @Prop() domain = "www.jumpcomedy.com";
+  domain = "www.jumpcomedy.com";
+
+  show_single_showtime_on_event_page = false;
+
+  unpack_showtimes = false;
 
   @Prop() reRender = 1;
 
@@ -49,6 +53,9 @@ export class EventWidget {
       r.json().then((json) => {
         this.events = json.data.events;
         this.colors = json.data.config.colors;
+        this.show_single_showtime_on_event_page =
+          json.data.config.show_single_showtime_on_event_page;
+        this.unpack_showtimes = json.data.config.unpack_showtimes;
         if (json.data.config.domain) {
           this.domain = json.data.config.domain;
         }
@@ -143,7 +150,7 @@ export class EventWidget {
                         backgroundColor: this.getColor("buy-link-bg-color"),
                         color: this.getColor("buy-link-text-color"),
                       }}
-                      href={`https://${this.domain}/e/${event.handle}`}
+                      href={`https://${this.domain}/e/${event.handle}${this.show_single_showtime_on_event_page && this.unpack_showtimes ? `?variant_id=${event.variants[0].id}` : ""}`}
                       class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl hover:bg-accent hover:opacity-80"
                     >
                       Get Tickets
