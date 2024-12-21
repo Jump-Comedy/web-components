@@ -11,6 +11,11 @@ export namespace Components {
         "domain": string;
         "events": any[];
     }
+    interface CompactEventList {
+        "config": any;
+        "domain": string;
+        "events": any[];
+    }
     interface EventList {
         "draftMode": boolean;
         "reRender": number;
@@ -60,6 +65,12 @@ declare global {
         prototype: HTMLBigEventListElement;
         new (): HTMLBigEventListElement;
     };
+    interface HTMLCompactEventListElement extends Components.CompactEventList, HTMLStencilElement {
+    }
+    var HTMLCompactEventListElement: {
+        prototype: HTMLCompactEventListElement;
+        new (): HTMLCompactEventListElement;
+    };
     interface HTMLEventListElement extends Components.EventList, HTMLStencilElement {
     }
     var HTMLEventListElement: {
@@ -80,6 +91,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "big-event-list": HTMLBigEventListElement;
+        "compact-event-list": HTMLCompactEventListElement;
         "event-list": HTMLEventListElement;
         "mailing-list-signup-form": HTMLMailingListSignupFormElement;
         "my-component": HTMLMyComponentElement;
@@ -87,6 +99,11 @@ declare global {
 }
 declare namespace LocalJSX {
     interface BigEventList {
+        "config"?: any;
+        "domain"?: string;
+        "events"?: any[];
+    }
+    interface CompactEventList {
         "config"?: any;
         "domain"?: string;
         "events"?: any[];
@@ -134,6 +151,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "big-event-list": BigEventList;
+        "compact-event-list": CompactEventList;
         "event-list": EventList;
         "mailing-list-signup-form": MailingListSignupForm;
         "my-component": MyComponent;
@@ -144,6 +162,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "big-event-list": LocalJSX.BigEventList & JSXBase.HTMLAttributes<HTMLBigEventListElement>;
+            "compact-event-list": LocalJSX.CompactEventList & JSXBase.HTMLAttributes<HTMLCompactEventListElement>;
             "event-list": LocalJSX.EventList & JSXBase.HTMLAttributes<HTMLEventListElement>;
             "mailing-list-signup-form": LocalJSX.MailingListSignupForm & JSXBase.HTMLAttributes<HTMLMailingListSignupFormElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;

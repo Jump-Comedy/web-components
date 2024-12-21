@@ -18,6 +18,8 @@ export class EventWidget {
 
   @Prop() reRender = 1;
 
+  @State() listType = "big-event-list";
+
   connectedCallback() {
     this.fetchData();
   }
@@ -41,6 +43,9 @@ export class EventWidget {
       r.json().then((json) => {
         this.events = json.data.events;
         this.config = json.data.config;
+        if (json.data.config.list_type) {
+          this.listType = json.data.config.list_type;
+        }
         if (json.data.config.domain) {
           this.domain = json.data.config.domain;
         }
@@ -52,11 +57,20 @@ export class EventWidget {
     if (!this.events || !this.config) return <div></div>;
     return (
       <div>
-        <big-event-list
-          events={this.events}
-          config={this.config}
-          domain={this.domain}
-        ></big-event-list>
+        {this.listType === "big-event-list" && (
+          <big-event-list
+            events={this.events}
+            config={this.config}
+            domain={this.domain}
+          ></big-event-list>
+        )}
+        {this.listType === "compact-event-list" && (
+          <compact-event-list
+            events={this.events}
+            config={this.config}
+            domain={this.domain}
+          ></compact-event-list>
+        )}
       </div>
     );
   }
