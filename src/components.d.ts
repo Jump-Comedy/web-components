@@ -6,6 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface BigEventList {
+        "config": any;
+        "domain": string;
+        "events": any[];
+    }
     interface EventList {
         "draftMode": boolean;
         "reRender": number;
@@ -49,6 +54,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLBigEventListElement extends Components.BigEventList, HTMLStencilElement {
+    }
+    var HTMLBigEventListElement: {
+        prototype: HTMLBigEventListElement;
+        new (): HTMLBigEventListElement;
+    };
     interface HTMLEventListElement extends Components.EventList, HTMLStencilElement {
     }
     var HTMLEventListElement: {
@@ -68,12 +79,18 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "big-event-list": HTMLBigEventListElement;
         "event-list": HTMLEventListElement;
         "mailing-list-signup-form": HTMLMailingListSignupFormElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface BigEventList {
+        "config"?: any;
+        "domain"?: string;
+        "events"?: any[];
+    }
     interface EventList {
         "draftMode"?: boolean;
         "reRender"?: number;
@@ -116,6 +133,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "big-event-list": BigEventList;
         "event-list": EventList;
         "mailing-list-signup-form": MailingListSignupForm;
         "my-component": MyComponent;
@@ -125,6 +143,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "big-event-list": LocalJSX.BigEventList & JSXBase.HTMLAttributes<HTMLBigEventListElement>;
             "event-list": LocalJSX.EventList & JSXBase.HTMLAttributes<HTMLEventListElement>;
             "mailing-list-signup-form": LocalJSX.MailingListSignupForm & JSXBase.HTMLAttributes<HTMLMailingListSignupFormElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
