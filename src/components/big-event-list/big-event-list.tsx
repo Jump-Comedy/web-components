@@ -130,7 +130,7 @@ export class BigEventList {
                           "buy-link-text-color",
                         ),
                       }}
-                      href={`https://${this.domain}/e/${event.handle}${this.config.show_single_showtime_on_event_page && this.config.unpack_showtimes ? `?variant_id=${event.variants[0].id}` : ""}`}
+                      href={`${this.domain.startsWith("https://") ? "" : "https://"}${this.domain}/e/${event.handle}${this.config.show_single_showtime_on_event_page && this.config.unpack_showtimes ? `?variant_id=${event.variants[0].id}` : ""}`}
                       class="p-3 whitespace-nowrap font-bold text-lg border-none rounded-2xl hover:bg-accent hover:opacity-80"
                     >
                       Get Tickets
