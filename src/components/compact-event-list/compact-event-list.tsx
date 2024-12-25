@@ -29,106 +29,111 @@ export class BigEventList {
                   src={`https://www.jumpcomedy.com/_next/image?w=1080&q=75&url=${event.thumbnail}`}
                 />
               </div>
-              <div
-                class="flex flex-col w-full p-1 items-center justify-center"
-                style={{
-                  backgroundColor: getColor(
-                    this.config.colors,
-                    "main-bg-color",
-                  ),
-                }}
-              >
-                <div class="flex gap-1 flex-col text-center">
-                  <div
-                    class="font-bold"
-                    style={{
-                      color: getColor(this.config.colors, "event-title-color"),
-                    }}
-                  >
-                    {event.title}
-                  </div>
-                  <div class="flex gap-2 justify-center flex-wrap shows-container">
-                    <div class="rounded text-white text-sm p-1 border-none">
-                      {event.variants.map((v) => (
-                        <div
-                          class={"p-1 rounded"}
-                          style={{
-                            color: getColor(
-                              this.config.colors,
-                              "showtime-text-color",
-                            ),
-                            backgroundColor: getColor(
-                              this.config.colors,
-                              "showtime-bg-color",
-                            ),
-                          }}
-                        >
-                          {formatDate(v.startsAt)}
-                          {v.low_stock_message && !v.is_out_of_stock && (
-                            <div class={"text-xs"}>{v.low_stock_message}</div>
-                          )}
-                          {v.is_out_of_stock && (
-                            <div class={"text-xs"}>SOLD OUT</div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
+              <div class={"flex flex-col md:flex-row w-full"}>
+                <div
+                  class="flex flex-col w-full p-1 items-center justify-center"
+                  style={{
+                    backgroundColor: getColor(
+                      this.config.colors,
+                      "main-bg-color",
+                    ),
+                  }}
+                >
+                  <div class="flex gap-1 flex-col text-center">
                     <div
-                      class="uppercase text-xs"
+                      class="font-bold"
                       style={{
                         color: getColor(
                           this.config.colors,
-                          "venue-name-text-color",
+                          "event-title-color",
                         ),
                       }}
                     >
-                      {event.venueArrangement.venue.name}
+                      {event.title}
+                    </div>
+                    <div class="flex gap-2 justify-center flex-wrap shows-container">
+                      <div class="rounded text-white text-sm p-1 border-none">
+                        {event.variants.map((v) => (
+                          <div
+                            class={"p-1 rounded"}
+                            style={{
+                              color: getColor(
+                                this.config.colors,
+                                "showtime-text-color",
+                              ),
+                              backgroundColor: getColor(
+                                this.config.colors,
+                                "showtime-bg-color",
+                              ),
+                            }}
+                          >
+                            {formatDate(v.startsAt)}
+                            {v.low_stock_message && !v.is_out_of_stock && (
+                              <div class={"text-xs"}>{v.low_stock_message}</div>
+                            )}
+                            {v.is_out_of_stock && (
+                              <div class={"text-xs"}>SOLD OUT</div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <div
+                        class="uppercase text-xs"
+                        style={{
+                          color: getColor(
+                            this.config.colors,
+                            "venue-name-text-color",
+                          ),
+                        }}
+                      >
+                        {event.venueArrangement.venue.name}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class={"flex flex-col items-center justify-center"}>
-                {event.is_out_of_stock ? (
-                  <div class={"flex p-2"}>
-                    <span
-                      class="p-1 whitespace-nowrap font-bold text-sm border-none rounded"
-                      style={{
-                        backgroundColor: getColor(
-                          this.config.colors,
-                          "buy-link-bg-color",
-                        ),
-                        color: getColor(
-                          this.config.colors,
-                          "buy-link-text-color",
-                        ),
-                      }}
-                    >
-                      SOLD OUT!
-                    </span>
-                  </div>
-                ) : (
-                  <div class={"flex p-2"}>
-                    <a
-                      target="_top"
-                      style={{
-                        backgroundColor: getColor(
-                          this.config.colors,
-                          "buy-link-bg-color",
-                        ),
-                        color: getColor(
-                          this.config.colors,
-                          "buy-link-text-color",
-                        ),
-                      }}
-                      href={`${this.domain.startsWith("https://") ? "" : "https://"}${this.domain}/e/${event.handle}${this.config.show_single_showtime_on_event_page && this.config.unpack_showtimes ? `?variant_id=${event.variants[0].id}` : ""}`}
-                      class="p-1 whitespace-nowrap font-bold text-sm border-none rounded hover:opacity-80"
-                    >
-                      Get Tickets
-                    </a>
-                  </div>
-                )}
+                <div class={"flex flex-col items-center justify-center"}>
+                  {event.is_out_of_stock ? (
+                    <div class={"flex p-2"}>
+                      <span
+                        class="p-1 whitespace-nowrap font-bold text-sm border-none rounded"
+                        style={{
+                          backgroundColor: getColor(
+                            this.config.colors,
+                            "buy-link-bg-color",
+                          ),
+                          color: getColor(
+                            this.config.colors,
+                            "buy-link-text-color",
+                          ),
+                        }}
+                      >
+                        SOLD OUT!
+                      </span>
+                    </div>
+                  ) : (
+                    <div class={"flex p-2"}>
+                      <a
+                        target="_top"
+                        style={{
+                          backgroundColor: getColor(
+                            this.config.colors,
+                            "buy-link-bg-color",
+                          ),
+                          color: getColor(
+                            this.config.colors,
+                            "buy-link-text-color",
+                          ),
+                        }}
+                        href={`${this.domain.startsWith("https://") ? "" : "https://"}${this.domain}/e/${event.handle}${this.config.show_single_showtime_on_event_page && this.config.unpack_showtimes ? `?variant_id=${event.variants[0].id}` : ""}`}
+                        class="p-1 whitespace-nowrap font-bold text-sm border-none rounded hover:opacity-80"
+                      >
+                        Get Tickets
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
