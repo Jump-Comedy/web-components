@@ -37,7 +37,7 @@ export class CalendarEventList {
       const calendarEl = shadowRoot.getElementById("calendar");
       // @ts-ignore
       const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: isMobile() ? "list" : "dayGridMonth",
+        initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventClick: function (info) {
           window.location = info.url;
 
