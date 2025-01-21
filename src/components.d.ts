@@ -11,6 +11,11 @@ export namespace Components {
         "domain": string;
         "events": any[];
     }
+    interface CalendarEventList {
+        "config": any;
+        "domain": string;
+        "events": any[];
+    }
     interface CompactEventList {
         "config": any;
         "domain": string;
@@ -65,6 +70,12 @@ declare global {
         prototype: HTMLBigEventListElement;
         new (): HTMLBigEventListElement;
     };
+    interface HTMLCalendarEventListElement extends Components.CalendarEventList, HTMLStencilElement {
+    }
+    var HTMLCalendarEventListElement: {
+        prototype: HTMLCalendarEventListElement;
+        new (): HTMLCalendarEventListElement;
+    };
     interface HTMLCompactEventListElement extends Components.CompactEventList, HTMLStencilElement {
     }
     var HTMLCompactEventListElement: {
@@ -91,6 +102,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "big-event-list": HTMLBigEventListElement;
+        "calendar-event-list": HTMLCalendarEventListElement;
         "compact-event-list": HTMLCompactEventListElement;
         "event-list": HTMLEventListElement;
         "mailing-list-signup-form": HTMLMailingListSignupFormElement;
@@ -99,6 +111,11 @@ declare global {
 }
 declare namespace LocalJSX {
     interface BigEventList {
+        "config"?: any;
+        "domain"?: string;
+        "events"?: any[];
+    }
+    interface CalendarEventList {
         "config"?: any;
         "domain"?: string;
         "events"?: any[];
@@ -151,6 +168,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "big-event-list": BigEventList;
+        "calendar-event-list": CalendarEventList;
         "compact-event-list": CompactEventList;
         "event-list": EventList;
         "mailing-list-signup-form": MailingListSignupForm;
@@ -162,6 +180,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "big-event-list": LocalJSX.BigEventList & JSXBase.HTMLAttributes<HTMLBigEventListElement>;
+            "calendar-event-list": LocalJSX.CalendarEventList & JSXBase.HTMLAttributes<HTMLCalendarEventListElement>;
             "compact-event-list": LocalJSX.CompactEventList & JSXBase.HTMLAttributes<HTMLCompactEventListElement>;
             "event-list": LocalJSX.EventList & JSXBase.HTMLAttributes<HTMLEventListElement>;
             "mailing-list-signup-form": LocalJSX.MailingListSignupForm & JSXBase.HTMLAttributes<HTMLMailingListSignupFormElement>;

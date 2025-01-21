@@ -44,7 +44,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "tailwind": "npx tailwindcss -i src/input.css -o src/components/big-event-list/big-event-list.css -c tailwind-config/big-event-list.js && npx tailwindcss -i src/input.css -o src/components/compact-event-list/compact-event-list.css -c tailwind-config/compact-event-list.js"
+    "tailwind": "npx tailwindcss -i src/input.css -o src/components/big-event-list/big-event-list.css -c tailwind-config/big-event-list.js && npx tailwindcss -i src/input.css -o src/components/compact-event-list/compact-event-list.css -c tailwind-config/compact-event-list.js && npx tailwindcss -i src/input.css -o src/components/calendar-event-list/calendar-event-list.css -c tailwind-config/calendar-event-list.js "
   },
   "devDependencies": {
     "@babel/generator": "^7.26.2",

@@ -71,6 +71,13 @@ export class EventWidget {
             domain={this.domain}
           ></compact-event-list>
         )}
+        {this.listType === "calendar-event-list" && (
+          <calendar-event-list
+            events={this.events}
+            config={this.config}
+            domain={this.domain}
+          ></calendar-event-list>
+        )}
       </div>
     );
   }
