@@ -1,5 +1,5 @@
 import { Component, h, Prop, Element } from "@stencil/core";
-
+import { isMobile } from "is-mobile";
 @Component({
   tag: "calendar-event-list",
   styleUrl: "./calendar-event-list.css",
@@ -15,15 +15,27 @@ export class CalendarEventList {
   componentDidLoad() {
     const shadowRoot = this.el.shadowRoot;
 
-    const script = document.createElement("script");
-    script.src =
-      "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js";
-    script.onload = () => {
-      // Initialize calendar
+    const loadScript = (src: string) => {
+      return new Promise<void>((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => resolve();
+        this.el.shadowRoot.appendChild(script);
+      });
+    };
+
+    Promise.all([
+      loadScript(
+        "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js",
+      ),
+      loadScript(
+        "https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.15/index.global.min.js",
+      ),
+    ]).then(() => {
       const calendarEl = shadowRoot.getElementById("calendar");
       // @ts-ignore
       const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth",
+        initialView: isMobile() ? "listWeek" : "dayGridMonth",
         eventClick: function (info) {
           window.location = info.url;
 
@@ -42,8 +54,7 @@ export class CalendarEventList {
         ),
       });
       calendar.render();
-    };
-    this.el.shadowRoot.appendChild(script);
+    });
   }
 
   render() {
