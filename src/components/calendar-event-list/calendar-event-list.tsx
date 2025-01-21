@@ -1,5 +1,7 @@
 import { Component, h, Prop, Element } from "@stencil/core";
 import { isMobile } from "is-mobile";
+import getUniqueShowtimes from "../../utils/get-unique-showtimes";
+
 @Component({
   tag: "calendar-event-list",
   styleUrl: "./calendar-event-list.css",
@@ -43,7 +45,7 @@ export class CalendarEventList {
           info.el.style.borderColor = "red";
         },
         events: this.events.flatMap((event) =>
-          event.variants.map((variant) => {
+          getUniqueShowtimes(event.variants).map((variant) => {
             return {
               title: event.title,
               start: variant.startsAt,

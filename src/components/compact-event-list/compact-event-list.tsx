@@ -1,6 +1,7 @@
 import { formatDate } from "@jumpcomedy/utils/dist";
 import { Component, h, Prop } from "@stencil/core";
 import getColor from "../../utils/get-color";
+import getUniqueShowtimes from "../../utils/get-unique-showtimes";
 
 @Component({
   tag: "compact-event-list",
@@ -53,7 +54,7 @@ export class BigEventList {
                     </div>
                     <div class="flex gap-2 justify-center flex-wrap shows-container">
                       <div class="rounded text-white text-sm p-1 border-none">
-                        {event.variants.map((v) => (
+                        {getUniqueShowtimes(event.variants).map((v) => (
                           <div
                             class={"p-1 rounded"}
                             style={{
