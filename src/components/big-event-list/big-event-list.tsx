@@ -47,7 +47,7 @@ export class BigEventList {
                   {event.title}
                 </div>
                 <div class="flex gap-4 justify-center flex-wrap shows-container">
-                  <div class="rounded text-white text-lg p-1 border-none bg-secondary">
+                  <div class="rounded text-white text-sm md:text-lg p-1 border-none bg-secondary">
                     {getUniqueShowtimes(event.variants).map((v) => (
                       <div
                         class={"p-1 rounded m-1"}
@@ -67,7 +67,7 @@ export class BigEventList {
                           <div class={"text-xs"}>{v.low_stock_message}</div>
                         )}
                         {v.is_out_of_stock && (
-                          <div class={"text-xs"}>SOLD OUT</div>
+                          <div class={"text-lg"}>SOLD OUT</div>
                         )}
                       </div>
                     ))}
