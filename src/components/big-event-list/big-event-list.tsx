@@ -28,7 +28,7 @@ export class BigEventList {
               <img
                 style={{ maxWidth: "500px", height: "auto", width: "100%" }}
                 src={`https://www.jumpcomedy.com/_next/image?w=1080&q=75&url=${getEventThumbnail(event)}`}
-                class="w-2/3 pt-4 sm:pt-0 sm:w-full hover:scale-105 hover:transform hover:transition hover:duration-1000 blur:scale-100 blur:transform blur:transition duration-1000"
+                class="w-2/3 md:pt-4 sm:w-full hover:scale-105 hover:transform hover:transition hover:duration-1000 blur:scale-100 blur:transform blur:transition duration-1000"
               />
             </div>
             <div
