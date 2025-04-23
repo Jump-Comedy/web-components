@@ -92,7 +92,7 @@ export class BigEventList {
                         "venue-address-text-color",
                       ),
                     }}
-                    class={"flex flex-col"}
+                    class={"flex flex-col text-sm"}
                   >
                     <div>{event.venueArrangement.venue.address}</div>
                     <div>
