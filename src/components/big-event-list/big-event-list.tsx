@@ -2,6 +2,7 @@ import { formatDate } from "@jumpcomedy/utils/dist";
 import { Component, h, Prop } from "@stencil/core";
 import getColor from "../../utils/get-color";
 import getUniqueShowtimes from "../../utils/get-unique-showtimes";
+import getEventThumbnail from "../../utils/get-event-thumbnail";
 
 @Component({
   tag: "big-event-list",
@@ -26,7 +27,7 @@ export class BigEventList {
             <div class="flex flex-grow place-content-center">
               <img
                 style={{ maxWidth: "500px", height: "auto", width: "100%" }}
-                src={`https://www.jumpcomedy.com/_next/image?w=1080&q=75&url=${event.thumbnail}`}
+                src={`https://www.jumpcomedy.com/_next/image?w=1080&q=75&url=${getEventThumbnail(event)}`}
                 class="w-2/3 pt-4 sm:pt-0 sm:w-full hover:scale-105 hover:transform hover:transition hover:duration-1000 blur:scale-100 blur:transform blur:transition duration-1000"
               />
             </div>
