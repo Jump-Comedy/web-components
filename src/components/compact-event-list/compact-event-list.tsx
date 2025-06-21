@@ -3,6 +3,7 @@ import { Component, h, Prop } from "@stencil/core";
 import getColor from "../../utils/get-color";
 import getUniqueShowtimes from "../../utils/get-unique-showtimes";
 import getEventThumbnail from "../../utils/get-event-thumbnail";
+import getCdnUrl from "../../utils/get-cdn-url";
 
 @Component({
   tag: "compact-event-list",
@@ -28,7 +29,7 @@ export class BigEventList {
               <div class={"flex flex-col items-center justify-center"}>
                 <img
                   style={{ maxWidth: "150px", height: "auto", width: "200px" }}
-                  src={`https://www.jumpcomedy.com/_next/image?w=1080&q=75&url=${getEventThumbnail(event)}`}
+                  src={getCdnUrl(getEventThumbnail(event))}
                 />
               </div>
               <div class={"flex flex-col md:flex-row w-full"}>
