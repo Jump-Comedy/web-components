@@ -43,6 +43,7 @@ export class CalendarEventList {
           console.log("info.event is ", info.event);
           window.open(info.event.url, "_blank");
           console.log("opened it");
+          info.jsEvent.stopPropagation();
 
           return false;
         },
