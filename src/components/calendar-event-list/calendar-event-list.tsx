@@ -39,14 +39,10 @@ export class CalendarEventList {
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventClick: function (info) {
+          info.jsEvent.preventDefault();
           console.log("info is ", info);
-          console.log("info.event is ", info.event);
           window.open(info.event.url, "_blank");
           console.log("opened it");
-          info.jsEvent.stopPropagation();
-          info.jsEvent.preventDefault();
-
-          return false;
         },
         events: this.events.flatMap((event) =>
           getUniqueShowtimes(event.variants).map((variant) => {
