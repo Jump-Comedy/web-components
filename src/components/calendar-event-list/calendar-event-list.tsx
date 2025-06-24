@@ -52,11 +52,9 @@ export class CalendarEventList {
           class="flex gap-x-2 items-center border-b border-gray-200 py-2"
         >
           <img
-            class="rounded object-cover"
+            class="rounded object-cover w-12"
             src="${arg.event.extendedProps.thumbnail}"
             alt="${arg.event.extendedProps.title}"
-            width="auto"
-            height="50"
           />
 
           <div class="flex flex-col gap-x-1">
