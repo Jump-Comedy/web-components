@@ -40,9 +40,9 @@ export class CalendarEventList {
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventContent: function (event) {
-          console.log("EVENT IS ", event);
+          console.log("EVENT IS ", event.extendedProps);
           // @ts-ignore
-          const formatted_date = formatDate(event.start);
+          const formatted_date = formatDate(event.extendedProps.start);
           return {
             html: `
 
@@ -52,20 +52,20 @@ export class CalendarEventList {
         >
           <img
             class="rounded object-cover"
-            src="${event.thumbnail}"
-            alt="${event.title}"
+            src="${event.extendedProps.thumbnail}"
+            alt="${event.extendedProps.title}"
             width="50"
             height="50"
           />
 
           <div class="flex flex-col gap-x-1">
             <div class="text-md text-blue-800 font-bold hover:cursor-pointer">
-              <a href="${event.url}" target="_blank">
-                ${event.title}
+              <a href="${event.extendedProps.url}" target="_blank">
+                ${event.extendedProps.title}
               </a>
             </div>
             <div class="text-md text-gray-500">
-              <a href="${event.url}" target="_blank">
+              <a href="${event.extendedProps.url}" target="_blank">
                 ${formatted_date}
               </a>
             </div>
@@ -82,14 +82,14 @@ export class CalendarEventList {
               </div>
 
               <div class="text-xs whitespace-normal">
-                ${event.title}
+                ${event.extendedProps.title}
               </div>
             </div>
             <div class="flex flex-col ml-2 flex-none lg:block hidden">
-              <img alt="${event.title}" src="${event.thumbnail}" class="w-8 float-right">
+              <img alt="${event.extendedProps.title}" src="${event.thumbnail}" class="w-8 float-right">
 
             </div>
-            <a href="${event.url}" target='_blank' class="absolute inset-0">
+            <a href="${event.extendedProps.url}" target='_blank' class="absolute inset-0">
                 <span class="sr-only">Click to view details</span>
               </a>
           </div>
@@ -99,12 +99,14 @@ export class CalendarEventList {
         events: this.events.flatMap((event) =>
           getUniqueShowtimes(event.variants).map((variant) => {
             return {
-              title: event.title,
-              start: variant.startsAt,
-              color: "#3788d8",
-              url: event.external_order_url
-                ? event.external_order_url
-                : `${this.domain.startsWith("https://") ? "" : "https://"}${this.domain}/e/${event.handle}`,
+              extendedProps: {
+                title: event.title,
+                start: variant.startsAt,
+                color: "#3788d8",
+                url: event.external_order_url
+                  ? event.external_order_url
+                  : `${this.domain.startsWith("https://") ? "" : "https://"}${this.domain}/e/${event.handle}`,
+              },
             };
           }),
         ),
