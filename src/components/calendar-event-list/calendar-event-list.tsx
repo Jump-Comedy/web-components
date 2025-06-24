@@ -37,6 +37,7 @@ export class CalendarEventList {
       const calendarEl = shadowRoot.getElementById("calendar");
       // @ts-ignore
       const calendar = new FullCalendar.Calendar(calendarEl, {
+        height: "auto",
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventClick: function (info) {
           info.jsEvent.preventDefault();
