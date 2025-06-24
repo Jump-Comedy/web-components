@@ -38,10 +38,10 @@ export class CalendarEventList {
       // @ts-ignore
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
-        eventClick: function (info, x) {
+        eventClick: function (info) {
           console.log("info is ", info);
           console.log("info.event is ", info.event);
-          window.open(info.url);
+          window.open(info.event.url);
           console.log("opened it");
 
           // change the border color just for fun
