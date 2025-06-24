@@ -38,28 +38,9 @@ export class CalendarEventList {
       // @ts-ignore
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
-        eventContent: function (arg) {
-          return {
-            html: `
-          <div class="flex w-full justify-between" style="background: transparent !important;">
-            <div class="flex flex-col">
-              <div class="text-xs lg:text-sm font-bold">
-                ${arg.event.start}
-              </div>
-
-              <div class="text-xs whitespace-normal">
-                ${arg.event.title}
-              </div>
-            </div>
-            <div class="flex flex-col ml-2 flex-none lg:block hidden">
-              <img src="${arg.event.thumbnail}" class="w-8 float-right">
-            </div>
-            <a href={arg.event.url} target='_blank' class="absolute inset-0">
-                <span class="sr-only">Click to view details</span>
-              </a>
-          </div>
-        `,
-          };
+        eventClick: function (info) {
+          info.jsEvent.preventDefault();
+          window.open(info.event.url, "_blank");
         },
         events: this.events.flatMap((event) =>
           getUniqueShowtimes(event.variants).map((variant) => {
