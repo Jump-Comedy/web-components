@@ -40,7 +40,6 @@ export class CalendarEventList {
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventContent: function (event) {
-          console.log("EVENT IS ", event);
           // @ts-ignore
           const formatted_date = formatDate(event.start);
           return {
