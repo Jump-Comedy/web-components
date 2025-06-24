@@ -39,7 +39,7 @@ export class CalendarEventList {
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventClick: function (info) {
-          window.open(info.url, "_top");
+          window.open(info.url, "_blank");
 
           // change the border color just for fun
           info.el.style.borderColor = "red";
