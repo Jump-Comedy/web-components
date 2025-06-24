@@ -40,9 +40,7 @@ export class CalendarEventList {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventClick: function (info) {
           info.jsEvent.preventDefault();
-          console.log("info is ", info);
           window.open(info.event.url, "_blank");
-          console.log("opened it");
         },
         events: this.events.flatMap((event) =>
           getUniqueShowtimes(event.variants).map((variant) => {
@@ -50,7 +48,9 @@ export class CalendarEventList {
               title: event.title,
               start: variant.startsAt,
               color: "#3788d8",
-              url: `${this.domain.startsWith("https://") ? "" : "https://"}${this.domain}/e/${event.handle}`,
+              url: event.external_order_url
+                ? event.external_order_url
+                : `${this.domain.startsWith("https://") ? "" : "https://"}${this.domain}/e/${event.handle}`,
             };
           }),
         ),
