@@ -655,10 +655,6 @@ video {
   padding: 1.5rem;
 }
 
-.pt-4 {
-  padding-top: 1rem;
-}
-
 .text-center {
   text-align: center;
 }
@@ -740,8 +736,15 @@ video {
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
-  .sm\:pt-0 {
-    padding-top: 0px;
+@media (min-width: 768px) {
+  .md\:pt-4 {
+    padding-top: 1rem;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
