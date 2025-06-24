@@ -1,7 +1,7 @@
-import { formatDate } from "@jumpcomedy/utils/dist";
 import { Component, h, Prop, Element } from "@stencil/core";
 import { isMobile } from "is-mobile";
 import getUniqueShowtimes from "../../utils/get-unique-showtimes";
+import { formatDate } from "@jumpcomedy/utils";
 
 @Component({
   tag: "calendar-event-list",
@@ -40,8 +40,6 @@ export class CalendarEventList {
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventContent: function (event) {
-          // @ts-ignore
-          const formatted_date = formatDate(event.start);
           return {
             html: `
 
@@ -51,21 +49,21 @@ export class CalendarEventList {
         >
           <img
             class="rounded object-cover"
-            src="${event.thumbnail}"
-            alt="${event.title}"
-            width="50"
-            height="50"
+            src={event.thumbnail}
+            alt={event.title}
+            width={50}
+            height={50}
           />
 
           <div class="flex flex-col gap-x-1">
             <div class="text-md text-blue-800 font-bold hover:cursor-pointer">
-              <a href="${event.url}" target="_blank">
-                ${event.title}
+              <a href={event.url} target={"_blank"}>
+                {event.title}
               </a>
             </div>
             <div class="text-md text-gray-500">
-              <a href="${event.url}" target="_blank">
-                ${formatted_date}
+              <a href={event.url} target={"_blank"}>
+                {formatDate(event.start)}
               </a>
             </div>
           </div>
@@ -77,7 +75,7 @@ export class CalendarEventList {
           <div class="hidden lg:block flex w-full justify-between" style="background: transparent !important;">
             <div class="flex flex-col">
               <div class="text-xs lg:text-sm font-bold">
-                ${formatted_date}
+                ${formatDate(event.start)}
               </div>
 
               <div class="text-xs whitespace-normal">
@@ -85,10 +83,9 @@ export class CalendarEventList {
               </div>
             </div>
             <div class="flex flex-col ml-2 flex-none lg:block hidden">
-              <img alt="${event.title}" src="${event.thumbnail}" class="w-8 float-right">
-
+              <img alt={event.title} src={event.thumbnail} class="w-8 float-right">
             </div>
-            <a href="${event.url}" target='_blank' class="absolute inset-0">
+            <a href={event.url} target='_blank' class="absolute inset-0">
                 <span class="sr-only">Click to view details</span>
               </a>
           </div>
