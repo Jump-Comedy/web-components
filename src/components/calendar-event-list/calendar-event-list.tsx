@@ -41,11 +41,10 @@ export class CalendarEventList {
         eventClick: function (info) {
           console.log("info is ", info);
           console.log("info.event is ", info.event);
-          window.open(info.event.url);
+          window.open(info.event.url, "_blank");
           console.log("opened it");
 
-          // change the border color just for fun
-          info.el.style.borderColor = "red";
+          return false;
         },
         events: this.events.flatMap((event) =>
           getUniqueShowtimes(event.variants).map((variant) => {
