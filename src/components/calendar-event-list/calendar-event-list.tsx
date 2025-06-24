@@ -75,15 +75,15 @@ export class CalendarEventList {
           <div class="hidden lg:block flex w-full justify-between" style="background: transparent !important;">
             <div class="flex flex-col">
               <div class="text-xs lg:text-sm font-bold">
-                ${formatDate(event.start)}
+                {formatDate(event.start)
               </div>
 
               <div class="text-xs whitespace-normal">
-                ${event.title}
+                {event.title}
               </div>
             </div>
             <div class="flex flex-col ml-2 flex-none lg:block hidden">
-              <img src="${event.thumbnail}" class="w-8 float-right">
+              <img alt={event.title} src={event.thumbnail} class="w-8 float-right">
             </div>
             <a href={event.url} target='_blank' class="absolute inset-0">
                 <span class="sr-only">Click to view details</span>
