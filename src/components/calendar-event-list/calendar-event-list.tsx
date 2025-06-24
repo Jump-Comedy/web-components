@@ -44,6 +44,7 @@ export class CalendarEventList {
           window.open(info.event.url, "_blank");
           console.log("opened it");
           info.jsEvent.stopPropagation();
+          info.jsEvent.preventDefault();
 
           return false;
         },
