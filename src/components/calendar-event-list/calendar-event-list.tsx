@@ -41,7 +41,12 @@ export class CalendarEventList {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventContent: function (event) {
           console.log("EVET is ", event);
-
+          console.log("EVENT STRIN ", JSON.stringify(event));
+          console.log("EVENT extendedPropsIS ", event.extendedProps);
+          console.log(
+            "EVENT extendedProps IS ",
+            JSON.stringify(event.extendedProps),
+          );
           // @ts-ignore
           const formatted_date = formatDate(event.extendedProps.start);
           return {
