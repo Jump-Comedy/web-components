@@ -40,13 +40,71 @@ export class CalendarEventList {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
         eventClick: function (info) {
           info.jsEvent.preventDefault();
-          console.log("info is ", info);
           window.open(info.event.url, "_blank");
-          console.log("opened it");
         },
-        events: this.events.flatMap((event) =>
+        eventContent: function(arg) {
+          return {
+            html: `
+            <div class="${isMobile() ? "" : "hidden"}">
+
+
+        <div
+          class="flex gap-x-2 items-center border-b border-gray-200 py-2"
+        >
+          <img
+            class="rounded object-cover"
+            src="${arg.event.extendedProps.thumbnail}"
+            alt="${arg.event.extendedProps.title}"
+            width="auto"
+            height="50"
+          />
+
+          <div class="flex flex-col gap-x-1">
+            <div class="text-md text-blue-800 font-bold hover:cursor-pointer">
+              <a href="${arg.event.url}" target="_blank">
+                ${arg.event.extendedProps.title}
+              </a>
+            </div>
+            <div class="text-md text-gray-500">
+              <a href="${arg.event.url}" target="_blank">
+                ${arg.event.extendedProps.starts_at_time}
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+            </div>
+              <div class="${isMobile() ? "hidden" : ""} flex w-full justify-between" style="background: transparent !important;">
+                <div class="flex flex-col">
+                  <div class="font-bold">
+                    ${arg.event.extendedProps.starts_at_time}
+                  </div>
+    
+                  <div class="text-xs whitespace-normal">
+                    ${arg.event.extendedProps.title}
+                  </div>
+                </div>
+                <div class="flex flex-col ml-2 flex-none">
+                  <img src="${arg.event.extendedProps.thumbnail}" class="w-12 float-right">
+                </div>
+              </div>
+            `
+          };
+        },
+      
+              events: this.events.flatMap((event) =>
           getUniqueShowtimes(event.variants).map((variant) => {
             return {
+              extendedProps: {
+                start_time: variant.startsAt,
+                title: event.title,
+                thumbnail: event.thumbnail,
+                handle: event.handle,
+                starts_at_time: variant.starts_at_time,
+              },
               title: event.title,
               start: variant.startsAt,
               color: "#3788d8",
