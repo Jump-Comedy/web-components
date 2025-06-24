@@ -38,8 +38,9 @@ export class CalendarEventList {
       // @ts-ignore
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: isMobile() ? "listYear" : "dayGridMonth",
-        eventClick: function (info) {
+        eventClick: function (info, x) {
           console.log("info is ", info);
+          console.log("info.event is ", info.event);
           window.open(info.url);
           console.log("opened it");
 
